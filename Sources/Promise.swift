@@ -1,5 +1,5 @@
 //
-//  DHPromise.swift
+//  Promise.swift
 //  DHPromise
 //
 //  Created by David Harris on 02/10/17.
@@ -70,7 +70,7 @@ class Promise<Value> {
         return self
     }
 
-    @discardableResult func `catch`(_ callback: @escaping (Error) -> Void) -> Promise<Value> {
+    @discardableResult func onError(_ callback: @escaping (Error) -> Void) -> Promise<Value> {
         errorCallbacks.append(callback)
         return self
     }
