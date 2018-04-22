@@ -95,7 +95,7 @@ class Promise<Value> {
     /// - Returns: the existing promise object
     @discardableResult
     public func then(_ onFulfilled: @escaping (Value) -> Void) -> Promise<Value> {
-        successCallbacks.append(callback)
+        successCallbacks.append(onFulfilled)
         return self
     }
 
@@ -105,7 +105,7 @@ class Promise<Value> {
     /// - Returns: the existing promise object
     @discardableResult
     public func onError(_ onRejected: @escaping (Error) -> Void) -> Promise<Value> {
-        errorCallbacks.append(callback)
+        errorCallbacks.append(onRejected)
         return self
     }
 
