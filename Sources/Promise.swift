@@ -8,15 +8,22 @@
 
 import Foundation
 
+/// An enum representing the possible states of a promise
+///
+/// - resolved: The Promise has completed successfully with an associated value
+/// - rejected: The Promise has completed unsuccessfully with an associated error
+/// - pending: The Promise is in progress, and has not completed with either a value or an error
 enum PromiseState {
     case resolved
     case rejected
     case pending
 }
 
+/// A representation of a Future with completion callbacks
 class Promise<Value> {
 
-    var state: PromiseState {
+    /// Current state of the Promise
+    public var state: PromiseState {
         switch result {
         case .some(let resultValue):
             switch resultValue {
@@ -30,24 +37,35 @@ class Promise<Value> {
         }
     }
 
-    var result: Result<Value>? {
+    /// Associated result type of the promise
+    public var result: Result<Value>? {
         didSet {
             fireCompletionCallbacks()
         }
     }
 
 
-    var value: Value? {
+    /// Convenience accessor for the associated value of the promise
+    public var value: Value? {
         return result?.value
     }
 
-    var error: Error? {
+    /// Convenience accessor for the associated value of the promise
+    public var error: Error? {
         return result?.error
     }
 
+    /// Callbacks to be executed upon successful completion of a promise
     private lazy var successCallbacks = [(Value) -> Void]()
+
+
+    /// Callbacks to be executed on unsuccessful completion of a promise
     private lazy var errorCallbacks = [(Error) -> Void]()
 
+
+    /// Initializer for the promise
+    ///
+    /// - Parameter work: Closure containing async work. Contains two internal parameters, a `resolve` closure and a `reject` closure to be executed depending on successful or unsuccessful completion of the promise
     public convenience init(_ work: @escaping (_ resolve: @escaping (Value) -> (), _ reject: @escaping (Error) -> ()) throws -> ()) {
         self.init()
         do {
@@ -57,24 +75,41 @@ class Promise<Value> {
         }
     }
 
-    func resolve(with value: Value) {
+    /// Completes a promise by resolving with a value
+    ///
+    /// - Parameter value: value to complete the promise with
+    public func resolve(with value: Value) {
         self.result = .success(value)
     }
 
-    func reject(with error: Error) {
+    /// Completes a promise by rejecting with an error
+    ///
+    /// - Parameter error: error to reject the promise with
+    public func reject(with error: Error) {
         self.result = .failure(error)
     }
 
-    @discardableResult func then(_ callback: @escaping (Value) -> Void) -> Promise<Value> {
+    /// Execute a closure upon successful completion of the promise
+    ///
+    /// - Parameter callback: closure to execute upon completion of the promise
+    /// - Returns: the existing promise object
+    @discardableResult
+    public func then(_ onFulfilled: @escaping (Value) -> Void) -> Promise<Value> {
         successCallbacks.append(callback)
         return self
     }
 
-    @discardableResult func onError(_ callback: @escaping (Error) -> Void) -> Promise<Value> {
+    /// Execute a closure upon unsuccessful completion of the promise
+    ///
+    /// - Parameter callback: closure to execute upon completion of the promise
+    /// - Returns: the existing promise object
+    @discardableResult
+    public func onError(_ onRejected: @escaping (Error) -> Void) -> Promise<Value> {
         errorCallbacks.append(callback)
         return self
     }
 
+    /// Fires stored completion callbacks once promise is completed
     private func fireCompletionCallbacks() {
         switch state {
         case .resolved:
