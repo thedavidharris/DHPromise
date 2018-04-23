@@ -218,6 +218,46 @@ public func all<Value>(_ promises: Promise<Value>...) -> Promise<[Value]> {
     return all(promises)
 }
 
+/// Zips the results of two promises of different types into a tuple of two elements
+///
+/// - Parameters:
+///   - first: The first promise of type A
+///   - second: The second promise of type B
+/// - Returns: A promise of type Promise<(A, B)>, containing a tuple of the resolved values, or the first error returned
+public func zip<A, B>(_ first: Promise<A>, _ second: Promise<B>) -> Promise<(A, B)> {
+    return Promise<(A, B)> { (fulfill, reject) in
+        let zipper = { _ in
+            if let firstValue = first.value, let secondValue = second.value {
+                fulfill((firstValue, secondValue))
+            }
+        } as (Any) -> ()
+        first.then(zipper).onError(reject)
+        second.then(zipper).onError(reject)
+    }
+}
+
+/// Zips the results of three promises of different types into a tuple of three elements
+///
+/// - Parameters:
+///   - first: The first promise of type A
+///   - second: The second promise of type B
+///   - third: The third promise of type C
+/// - Returns: A promise of type Promise<(A, B, C)>, containing a tuple of the resolved values, or the first error returned
+public func zip<A, B, C>(_ first: Promise<A>, _ second: Promise<B>, _ third: Promise<C>) -> Promise<(A, B, C)> {
+    return Promise<(A, B, C)>({ (fulfill, reject) in
+        let firstZippedPair = zip(first, second)
+
+        let zipper = { _ in
+            if let firstValue = firstZippedPair.value, let lastValue = third.value {
+                fulfill((firstValue.0, firstValue.1, lastValue))
+            }
+        } as (Any) -> ()
+
+        firstZippedPair.then(zipper).onError(reject)
+        second.then(zipper).onError(reject)
+    })
+}
+
 /// Returns the first promise resolved in an array of promises
 ///
 /// - Parameter promises: an array of promises of the same type
