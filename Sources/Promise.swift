@@ -120,6 +120,15 @@ public class Promise<Value> {
     }
 
     @discardableResult
+    public func finally(_ onFinally: @escaping () -> ()) -> Promise<Value> {
+        return then({ _ in
+            onFinally()
+        }).onError({ _ in
+            onFinally()
+        })
+    }
+
+    @discardableResult
     public func flatMap<NewValue>(_ onFulfilled: @escaping (Value) -> Promise<NewValue>) -> Promise<NewValue> {
         return Promise<NewValue> { (fullfill, reject) in
             self.successCallbacks.append({ (value) in
