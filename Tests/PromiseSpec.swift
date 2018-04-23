@@ -53,9 +53,7 @@ class PromiseSpec: QuickSpec {
 
         describe("When making chaining two successful promise calls") {
             it("should return a success") {
-                let promise = asyncSquareRoot(input: 16).flatMap({ (value) in
-                    asyncSquareRoot(input: value)
-                })
+                let promise = asyncSquareRoot(input: 16).flatMap(asyncSquareRoot)
                 expect(promise.value).toEventually(equal(2), timeout: 4)
             }
 
