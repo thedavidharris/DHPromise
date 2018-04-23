@@ -119,6 +119,10 @@ public class Promise<Value> {
         return self
     }
 
+    /// Execute a closure on completion of promise in both fulfilled and error states
+    ///
+    /// - Parameter onFinally: closure to execute upon completion
+    /// - Returns: the existing promise object
     @discardableResult
     public func finally(_ onFinally: @escaping () -> ()) -> Promise<Value> {
         return then({ _ in
@@ -128,6 +132,10 @@ public class Promise<Value> {
         })
     }
 
+    /// Chains promise objects together
+    ///
+    /// - Parameter onFulfilled: closure to execute upon successful completion
+    /// - Returns: existing promise object
     @discardableResult
     public func flatMap<NewValue>(_ onFulfilled: @escaping (Value) -> Promise<NewValue>) -> Promise<NewValue> {
         return Promise<NewValue> { (fullfill, reject) in
@@ -145,6 +153,10 @@ public class Promise<Value> {
         }
     }
 
+    /// Maps the underlying type in the Promise object
+    ///
+    /// - Parameter onFulfilled: closure to execute upon successful completion
+    /// - Returns: the existing promise object
     @discardableResult
     public func map<NewValue>(_ onFulfilled: @escaping (Value) -> NewValue) -> Promise<NewValue> {
         return flatMap { (value) in
@@ -159,16 +171,27 @@ public class Promise<Value> {
             successCallbacks.forEach {
                 result?.value.map($0)
             }
+            removeAllCallbacks()
         case .rejected:
             errorCallbacks.forEach {
                 result?.error.map($0)
             }
+            removeAllCallbacks()
         case .pending:
             break
         }
     }
+
+    private func removeAllCallbacks() {
+        successCallbacks.removeAll()
+        errorCallbacks.removeAll()
+    }
 }
 
+/// Resolve multiple promises of the same type into a single promise returning an array of the fulfilled values
+///
+/// - Parameter promises: an array of promises of the same type
+/// - Returns: a single promise combining the resolved values of `promises`
 public func all<Value>(_ promises: [Promise<Value>]) -> Promise<[Value]> {
     return Promise<[Value]>{ (fullfill, reject) in
         if promises.isEmpty {
@@ -184,6 +207,29 @@ public func all<Value>(_ promises: [Promise<Value>]) -> Promise<[Value]> {
                 reject(error)
             })
         })
+    }
+}
+
+/// Variadic implemention of resolving all promises
+///
+/// - Parameter promises: an array of promises of the same type
+/// - Returns: a single promise combining the resolved values of `promises`
+public func all<Value>(_ promises: Promise<Value>...) -> Promise<[Value]> {
+    return all(promises)
+}
+
+/// Returns the first promise resolved in an array of promises
+///
+/// - Parameter promises: an array of promises of the same type
+/// - Returns: the first promises to resolve
+public func race<Value>(_ promises: [Promise<Value>]) -> Promise<Value> {
+    return Promise<Value> { (fulfill, reject) in
+        if promises.isEmpty {
+            fatalError("Cannot call `race` on an empty array")
+        }
+        promises.forEach {
+            $0.then(fulfill).onError(reject)
+        }
     }
 }
 
