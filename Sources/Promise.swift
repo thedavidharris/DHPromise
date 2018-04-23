@@ -13,14 +13,14 @@ import Foundation
 /// - resolved: The Promise has completed successfully with an associated value
 /// - rejected: The Promise has completed unsuccessfully with an associated error
 /// - pending: The Promise is in progress, and has not completed with either a value or an error
-enum PromiseState {
+public enum PromiseState {
     case resolved
     case rejected
     case pending
 }
 
 /// A representation of a Future with completion callbacks
-class Promise<Value> {
+public class Promise<Value> {
 
     /// Current state of the Promise
     public var state: PromiseState {
@@ -157,5 +157,30 @@ class Promise<Value> {
         case .pending:
             break
         }
+    }
+}
+
+public func all<Value>(_ promises: [Promise<Value>]) -> Promise<[Value]> {
+    return Promise<[Value]>{ (fullfill, reject) in
+        if promises.isEmpty {
+            fullfill([])
+        }
+        promises.forEach({ (promise) in
+            promise.then({ _ in
+                if promises.containsOnly(where: { $0.state == .resolved }) {
+                    // Switch to compactMap in Swift 4.1
+                    fullfill(promises.flatMap({ $0.value }))
+                }
+            }).onError({ (error) in
+                reject(error)
+            })
+        })
+    }
+}
+
+// Can remove on inclusion into Swift STL
+extension Sequence {
+    public func containsOnly(where predicate: (Element) throws -> Bool) rethrows -> Bool {
+    return try !contains { try !predicate($0) }
     }
 }
