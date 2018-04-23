@@ -38,8 +38,33 @@ class PromiseSpec: QuickSpec {
 
             it("should execute error closures for an unsuccessful promise") {
                 waitUntil(action: { (done) in
+                    asyncSquareRoot(input: 4).then({ (value) in
+                        print(value)
+                    }).onError({ (error) in
+                        print(error)
+                    })
                     asyncSquareRoot(input: -2).onError({ (error) in
                         expect(error).to(matchError(SquareRootError.negativeInput))
+                        done()
+                    })
+                })
+            }
+        }
+
+        describe("When making chaining two successful promise calls") {
+            it("should return a success") {
+                let promise = asyncSquareRoot(input: 16).flatMap({ (value) in
+                    asyncSquareRoot(input: value)
+                })
+                expect(promise.value).toEventually(equal(2), timeout: 4)
+            }
+
+            it("should execute resolve closures for a successful promise") {
+                waitUntil(timeout: 4, action: { (done) in
+                    asyncSquareRoot(input: 16).flatMap({ (value) in
+                        asyncSquareRoot(input: value)
+                    }).then({ (finalValue) in
+                        expect(finalValue) == 2
                         done()
                     })
                 })

@@ -62,6 +62,16 @@ class Promise<Value> {
     /// Callbacks to be executed on unsuccessful completion of a promise
     private lazy var errorCallbacks = [(Error) -> Void]()
 
+    public convenience init(value: Value) {
+        self.init()
+        self.result = .success(value)
+    }
+
+    public convenience init(error: Error) {
+        self.init()
+        self.result = .failure(error)
+    }
+
 
     /// Initializer for the promise
     ///
@@ -107,6 +117,30 @@ class Promise<Value> {
     public func onError(_ onRejected: @escaping (Error) -> Void) -> Promise<Value> {
         errorCallbacks.append(onRejected)
         return self
+    }
+
+    @discardableResult
+    public func flatMap<NewValue>(_ onFulfilled: @escaping (Value) -> Promise<NewValue>) -> Promise<NewValue> {
+        return Promise<NewValue> { (fullfill, reject) in
+            self.successCallbacks.append({ (value) in
+                onFulfilled(value).then({ (newValue) in
+                    fullfill(newValue)
+                }).onError({ (error) in
+                    reject(error)
+                })
+            })
+
+            self.errorCallbacks.append({ (error) in
+                reject(error)
+            })
+        }
+    }
+
+    @discardableResult
+    public func map<NewValue>(_ onFulfilled: @escaping (Value) -> NewValue) -> Promise<NewValue> {
+        return flatMap { (value) in
+            return Promise<NewValue>(value: onFulfilled(value))
+        }
     }
 
     /// Fires stored completion callbacks once promise is completed
