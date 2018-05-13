@@ -19,6 +19,25 @@ public enum PromiseState {
     case pending
 }
 
+struct Callback<Value> {
+    let onFulfilled: ((Value) -> Void)?
+    let onRejected: ((Error) -> Void)?
+    let queue: DispatchQueue
+
+    func executeCallback(_ result: Result<Value>) {
+        switch result {
+        case .success(let value):
+            queue.async {
+                self.onFulfilled?(value)
+            }
+        case .failure(let error):
+            queue.async {
+                self.onRejected?(error)
+            }
+        }
+    }
+}
+
 /// A representation of a Future with completion callbacks
 public class Promise<Value> {
 
@@ -60,12 +79,7 @@ public class Promise<Value> {
         }
     }
 
-    /// Callbacks to be executed upon successful completion of a promise
-    lazy var successCallbacks = [(Value) -> Void]()
-
-
-    /// Callbacks to be executed on unsuccessful completion of a promise
-     lazy var errorCallbacks = [(Error) -> Void]()
+    lazy var callbacks = [Callback<Value>]()
 
     /// Locked queue to allow for thread-safety within the promise object
     private let promiseQueue = DispatchQueue(label: "promise_queue", qos: .userInitiated)
@@ -170,14 +184,12 @@ public class Promise<Value> {
         }
     }
 
-    private func addCallbacks(onFulfilled: ((Value) -> ())? = nil, onRejected: ((Error) -> ())? = nil) {
+    private func addCallbacks(on queue: DispatchQueue = DispatchQueue.main, onFulfilled: ((Value) -> ())? = nil, onRejected: ((Error) -> ())? = nil) {
         promiseQueue.async {
-            if let successCallback = onFulfilled {
-                self.successCallbacks.append(successCallback)
-            }
-            if let errorCallback = onRejected {
-                self.errorCallbacks.append(errorCallback)
-            }
+            let callback = Callback.init(onFulfilled: onFulfilled,
+                                         onRejected: onRejected,
+                                         queue: queue)
+            self.callbacks.append(callback)
         }
         fireCompletionCallbacks()
     }
@@ -186,31 +198,15 @@ public class Promise<Value> {
     private func fireCompletionCallbacks() {
         promiseQueue.async {
             switch self.state {
-            case .resolved:
-                self.successCallbacks.forEach { callback in
-                    // TODO: right now defaulting to main queue, this is to fix some sync deadlocks
-                    DispatchQueue.main.async {
-                        self.result?.value.map(callback)
-                    }
+            case .resolved, .rejected:
+                self.callbacks.forEach { callback in
+                    self.result.map(callback.executeCallback)
                 }
-                self.removeAllCallbacks()
-            case .rejected:
-                self.errorCallbacks.forEach { callback in
-                    // TODO: right now defaulting to main queue, this is to fix some sync deadlocks
-                    DispatchQueue.main.async {
-                        self.result?.error.map(callback)
-                    }
-                }
-                self.removeAllCallbacks()
+                self.callbacks.removeAll()
             case .pending:
                 break
             }
         }
-    }
-
-    private func removeAllCallbacks() {
-        successCallbacks.removeAll()
-        errorCallbacks.removeAll()
     }
 }
 
