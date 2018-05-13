@@ -43,7 +43,7 @@ public class Promise<Value> {
 
     /// Current state of the Promise
     public var state: PromiseState {
-        switch result {
+        switch _result {
         case .some(let resultValue):
             switch resultValue {
             case .success:
@@ -58,8 +58,18 @@ public class Promise<Value> {
 
     // TODO: this may need some added thread-safety
     /// Associated result type of the promise
+    private var _result: Result<Value>?
+
     private var result: Result<Value>? {
-        didSet {
+        get {
+           return promiseQueue.sync {
+                return self._result
+            }
+        }
+        set {
+            promiseQueue.sync {
+                _result = newValue
+            }
             fireCompletionCallbacks()
         }
     }
@@ -67,16 +77,12 @@ public class Promise<Value> {
 
     /// Convenience accessor for the associated value of the promise
     public var value: Value? {
-        return promiseQueue.sync {
-            return result?.value
-        }
+        return result?.value
     }
 
     /// Convenience accessor for the associated value of the promise
     public var error: Error? {
-        return promiseQueue.sync {
-            return result?.error
-        }
+        return result?.error
     }
 
     lazy var callbacks = [Callback<Value>]()
@@ -84,13 +90,11 @@ public class Promise<Value> {
     /// Locked queue to allow for thread-safety within the promise object
     private let promiseQueue = DispatchQueue(label: "promise_queue", qos: .userInitiated)
 
-    public convenience init(value: Value) {
-        self.init()
+    public init(value: Value) {
         self.result = .success(value)
     }
 
-    public convenience init(error: Error) {
-        self.init()
+    public init(error: Error) {
         self.result = .failure(error)
     }
 
@@ -98,8 +102,7 @@ public class Promise<Value> {
     /// Initializer for the promise
     ///
     /// - Parameter work: Closure containing async work. Contains two internal parameters, a `resolve` closure and a `reject` closure to be executed depending on successful or unsuccessful completion of the promise
-    public convenience init(_ work: @escaping (_ resolve: @escaping (Value) -> (), _ reject: @escaping (Error) -> ()) throws -> ()) {
-        self.init()
+    public init(_ work: @escaping (_ resolve: @escaping (Value) -> (), _ reject: @escaping (Error) -> ()) throws -> ()) {
         do {
             try work(self.resolve, self.reject)
         } catch let error {
@@ -126,8 +129,8 @@ public class Promise<Value> {
     /// - Parameter callback: closure to execute upon completion of the promise
     /// - Returns: the existing promise object
     @discardableResult
-    public func then(_ onFulfilled: @escaping (Value) -> Void) -> Promise<Value> {
-        addCallbacks(onFulfilled: onFulfilled)
+    public func then(on queue: DispatchQueue = DispatchQueue.main, _ onFulfilled: @escaping (Value) -> Void) -> Promise<Value> {
+        addCallbacks(on: queue, onFulfilled: onFulfilled)
         return self
     }
 
@@ -136,8 +139,8 @@ public class Promise<Value> {
     /// - Parameter callback: closure to execute upon completion of the promise
     /// - Returns: the existing promise object
     @discardableResult
-    public func onError(_ onRejected: @escaping (Error) -> Void) -> Promise<Value> {
-        addCallbacks(onRejected: onRejected)
+    public func onError(on queue: DispatchQueue = DispatchQueue.main, _ onRejected: @escaping (Error) -> Void) -> Promise<Value> {
+        addCallbacks(on: queue, onRejected: onRejected)
         return self
     }
 
@@ -159,14 +162,16 @@ public class Promise<Value> {
     /// - Parameter onFulfilled: closure to execute upon successful completion
     /// - Returns: existing promise object
     @discardableResult
-    public func flatMap<NewValue>(_ onFulfilled: @escaping (Value) -> Promise<NewValue>) -> Promise<NewValue> {
+    public func flatMap<NewValue>(on queue: DispatchQueue = DispatchQueue.main, _ onFulfilled: @escaping (Value) -> Promise<NewValue>) -> Promise<NewValue> {
         return Promise<NewValue> { (fullfill, reject) in
-            self.addCallbacks(onFulfilled: { (value) in
-                onFulfilled(value).then({ (newValue) in
-                    fullfill(newValue)
-                }).onError({ (error) in
-                    reject(error)
-                })
+            self.addCallbacks(
+                on: queue,
+                onFulfilled: { (value) in
+                    onFulfilled(value).then({ (newValue) in
+                        fullfill(newValue)
+                    }).onError({ (error) in
+                        reject(error)
+                    })
             }, onRejected: { (error) in
                 reject(error)
             })
@@ -184,7 +189,7 @@ public class Promise<Value> {
         }
     }
 
-    private func addCallbacks(on queue: DispatchQueue = DispatchQueue.main, onFulfilled: ((Value) -> ())? = nil, onRejected: ((Error) -> ())? = nil) {
+    private func addCallbacks(on queue: DispatchQueue, onFulfilled: ((Value) -> ())? = nil, onRejected: ((Error) -> ())? = nil) {
         promiseQueue.async {
             let callback = Callback.init(onFulfilled: onFulfilled,
                                          onRejected: onRejected,
@@ -200,7 +205,7 @@ public class Promise<Value> {
             switch self.state {
             case .resolved, .rejected:
                 self.callbacks.forEach { callback in
-                    self.result.map(callback.executeCallback)
+                    self._result.map(callback.executeCallback)
                 }
                 self.callbacks.removeAll()
             case .pending:
