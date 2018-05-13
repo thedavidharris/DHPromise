@@ -37,8 +37,9 @@ public class Promise<Value> {
         }
     }
 
+    // TODO: this may need some added thread-safety
     /// Associated result type of the promise
-    public var result: Result<Value>? {
+    private var result: Result<Value>? {
         didSet {
             fireCompletionCallbacks()
         }
@@ -47,20 +48,27 @@ public class Promise<Value> {
 
     /// Convenience accessor for the associated value of the promise
     public var value: Value? {
-        return result?.value
+        return promiseQueue.sync {
+            return result?.value
+        }
     }
 
     /// Convenience accessor for the associated value of the promise
     public var error: Error? {
-        return result?.error
+        return promiseQueue.sync {
+            return result?.error
+        }
     }
 
     /// Callbacks to be executed upon successful completion of a promise
-    private lazy var successCallbacks = [(Value) -> Void]()
+    lazy var successCallbacks = [(Value) -> Void]()
 
 
     /// Callbacks to be executed on unsuccessful completion of a promise
-    private lazy var errorCallbacks = [(Error) -> Void]()
+     lazy var errorCallbacks = [(Error) -> Void]()
+
+    /// Locked queue to allow for thread-safety within the promise object
+    private let promiseQueue = DispatchQueue(label: "promise_queue", qos: .userInitiated)
 
     public convenience init(value: Value) {
         self.init()
@@ -105,7 +113,7 @@ public class Promise<Value> {
     /// - Returns: the existing promise object
     @discardableResult
     public func then(_ onFulfilled: @escaping (Value) -> Void) -> Promise<Value> {
-        successCallbacks.append(onFulfilled)
+        addCallbacks(onFulfilled: onFulfilled)
         return self
     }
 
@@ -115,7 +123,7 @@ public class Promise<Value> {
     /// - Returns: the existing promise object
     @discardableResult
     public func onError(_ onRejected: @escaping (Error) -> Void) -> Promise<Value> {
-        errorCallbacks.append(onRejected)
+        addCallbacks(onRejected: onRejected)
         return self
     }
 
@@ -139,15 +147,13 @@ public class Promise<Value> {
     @discardableResult
     public func flatMap<NewValue>(_ onFulfilled: @escaping (Value) -> Promise<NewValue>) -> Promise<NewValue> {
         return Promise<NewValue> { (fullfill, reject) in
-            self.successCallbacks.append({ (value) in
+            self.addCallbacks(onFulfilled: { (value) in
                 onFulfilled(value).then({ (newValue) in
                     fullfill(newValue)
                 }).onError({ (error) in
                     reject(error)
                 })
-            })
-
-            self.errorCallbacks.append({ (error) in
+            }, onRejected: { (error) in
                 reject(error)
             })
         }
@@ -164,21 +170,41 @@ public class Promise<Value> {
         }
     }
 
+    private func addCallbacks(onFulfilled: ((Value) -> ())? = nil, onRejected: ((Error) -> ())? = nil) {
+        promiseQueue.async {
+            if let successCallback = onFulfilled {
+                self.successCallbacks.append(successCallback)
+            }
+            if let errorCallback = onRejected {
+                self.errorCallbacks.append(errorCallback)
+            }
+        }
+        fireCompletionCallbacks()
+    }
+
     /// Fires stored completion callbacks once promise is completed
     private func fireCompletionCallbacks() {
-        switch state {
-        case .resolved:
-            successCallbacks.forEach {
-                result?.value.map($0)
+        promiseQueue.async {
+            switch self.state {
+            case .resolved:
+                self.successCallbacks.forEach { callback in
+                    // TODO: right now defaulting to main queue, this is to fix some sync deadlocks
+                    DispatchQueue.main.async {
+                        self.result?.value.map(callback)
+                    }
+                }
+                self.removeAllCallbacks()
+            case .rejected:
+                self.errorCallbacks.forEach { callback in
+                    // TODO: right now defaulting to main queue, this is to fix some sync deadlocks
+                    DispatchQueue.main.async {
+                        self.result?.error.map(callback)
+                    }
+                }
+                self.removeAllCallbacks()
+            case .pending:
+                break
             }
-            removeAllCallbacks()
-        case .rejected:
-            errorCallbacks.forEach {
-                result?.error.map($0)
-            }
-            removeAllCallbacks()
-        case .pending:
-            break
         }
     }
 
