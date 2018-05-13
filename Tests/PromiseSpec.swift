@@ -124,7 +124,7 @@ class PromiseSpec: QuickSpec {
             it("should return the results of both when both succeed") {
                 let firstPromise = asyncSquareRoot(input: 4)
                 let secondPromise = slowerAyncSquareRoot(input: 16)
-                let combined = all(firstPromise, secondPromise)
+                let combined = DHPromise.all(firstPromise, secondPromise)
                 expect(combined.value).toEventually(equal([2,4]))
             }
         }
