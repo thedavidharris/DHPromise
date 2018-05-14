@@ -230,6 +230,29 @@ public class Promise<Value> {
 public extension Promise {
 
     @discardableResult
+    public func `do`(on queue: DispatchQueue = DispatchQueue.main, _ action: @escaping (Value) throws -> Void) -> Promise<Value> {
+        return self.flatMap({ (value) in
+            return Promise({ (fulfill, reject) in
+                do {
+                    try action(value)
+                    fulfill(value)
+                } catch {
+                    reject(error)
+                }
+            })
+        })
+    }
+
+    @discardableResult
+    public func delay(_ timeInterval: TimeInterval) -> Promise<Value> {
+        return Promise<Void> { (fulfill, reject) in
+            DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval, execute: {
+                fulfill(())
+            })
+        }.flatMap { _ in self }
+    }
+
+    @discardableResult
     public func recover(_ recoverBlock: @escaping (Error) throws -> Promise<Value>) -> Promise<Value> {
         return Promise { fulfill, reject in
             self.then(fulfill).onError({ error in
@@ -241,6 +264,15 @@ public extension Promise {
             })
         }
     }
+
+    // Coming soon
+//    @discardableResult
+//    public func retry(_ attempts: Int, _ condition: @escaping ((Int, Error) throws -> Bool) = { _,_ in true }) -> Promise<Value> {
+//        guard attempts >= 1 else {
+//            // Must be a valid attempts number
+//            return Promise(error: DHPromise.Problem.invalidInput)
+//        }
+//    }
 
     @discardableResult
     public func validate(_ validate: @escaping (Value) throws -> Bool) -> Promise<Value> {
@@ -271,6 +303,7 @@ public enum DHPromise {
 
     enum Problem: Error {
         case emptyRace
+        case invalidInput
         case timeout
         case validationFailed
     }
