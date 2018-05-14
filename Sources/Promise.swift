@@ -56,11 +56,11 @@ public class Promise<Value> {
         }
     }
 
-    // TODO: this may need some added thread-safety
-    /// Associated result type of the promise
+    /// Private underlying value of Promise.result for thread-safe access
     private var _result: Result<Value>?
 
-    private var result: Result<Value>? {
+    /// Result value of the promise
+    public var result: Result<Value>? {
         get {
            return promiseQueue.sync {
                 return self._result
@@ -98,15 +98,19 @@ public class Promise<Value> {
         self.result = .failure(error)
     }
 
-
+    /// - Parameter work:
     /// Initializer for the promise
     ///
-    /// - Parameter work: Closure containing async work. Contains two internal parameters, a `resolve` closure and a `reject` closure to be executed depending on successful or unsuccessful completion of the promise
-    public init(_ work: @escaping (_ resolve: @escaping (Value) -> (), _ reject: @escaping (Error) -> ()) throws -> ()) {
-        do {
-            try work(self.resolve, self.reject)
-        } catch let error {
-            self.reject(with: error)
+    /// - Parameters:
+    ///   - queue: DispatchQueue to execute work on. Defaults to DispatchQueue.global(qos: .userInitiated)
+    ///   - work: Closure containing async work. Contains two internal parameters, a `resolve` closure and a `reject` closure to be executed depending on successful or unsuccessful completion of the promise
+    public init(on queue: DispatchQueue = DispatchQueue.global(qos: .userInitiated), _ work: @escaping (_ resolve: @escaping (Value) -> (), _ reject: @escaping (Error) -> ()) throws -> ()) {
+        queue.async {
+            do {
+                try work(self.resolve, self.reject)
+            } catch let error {
+                self.reject(with: error)
+            }
         }
     }
 
@@ -162,16 +166,20 @@ public class Promise<Value> {
     /// - Parameter onFulfilled: closure to execute upon successful completion
     /// - Returns: existing promise object
     @discardableResult
-    public func flatMap<NewValue>(on queue: DispatchQueue = DispatchQueue.main, _ onFulfilled: @escaping (Value) -> Promise<NewValue>) -> Promise<NewValue> {
+    public func flatMap<NewValue>(on queue: DispatchQueue = DispatchQueue.main, _ onFulfilled: @escaping (Value) throws -> Promise<NewValue>) -> Promise<NewValue> {
         return Promise<NewValue> { (fullfill, reject) in
             self.addCallbacks(
                 on: queue,
                 onFulfilled: { (value) in
-                    onFulfilled(value).then({ (newValue) in
-                        fullfill(newValue)
-                    }).onError({ (error) in
+                    do {
+                        try onFulfilled(value).then({ (newValue) in
+                            fullfill(newValue)
+                        }).onError({ (error) in
+                            reject(error)
+                        })
+                    } catch {
                         reject(error)
-                    })
+                    }
             }, onRejected: { (error) in
                 reject(error)
             })
@@ -183,15 +191,19 @@ public class Promise<Value> {
     /// - Parameter onFulfilled: closure to execute upon successful completion
     /// - Returns: the existing promise object
     @discardableResult
-    public func map<NewValue>(_ onFulfilled: @escaping (Value) -> NewValue) -> Promise<NewValue> {
+    public func map<NewValue>(_ onFulfilled: @escaping (Value) throws -> NewValue) -> Promise<NewValue> {
         return flatMap { (value) in
-            return Promise<NewValue>(value: onFulfilled(value))
+            do {
+                return Promise<NewValue>(value: try onFulfilled(value))
+            } catch {
+                return Promise<NewValue>(error: error)
+            }
         }
     }
 
     private func addCallbacks(on queue: DispatchQueue, onFulfilled: ((Value) -> ())? = nil, onRejected: ((Error) -> ())? = nil) {
         promiseQueue.async {
-            let callback = Callback.init(onFulfilled: onFulfilled,
+            let callback = Callback(onFulfilled: onFulfilled,
                                          onRejected: onRejected,
                                          queue: queue)
             self.callbacks.append(callback)
@@ -215,9 +227,53 @@ public class Promise<Value> {
     }
 }
 
+public extension Promise {
+
+    @discardableResult
+    public func recover(_ recoverBlock: @escaping (Error) throws -> Promise<Value>) -> Promise<Value> {
+        return Promise { fulfill, reject in
+            self.then(fulfill).onError({ error in
+                do {
+                    try recoverBlock(error).then(fulfill).onError(reject)
+                } catch (let error) {
+                    reject(error)
+                }
+            })
+        }
+    }
+
+    @discardableResult
+    public func validate(_ validate: @escaping (Value) throws -> Bool) -> Promise<Value> {
+        return self.map({ (value)  in
+            guard try validate(value) else {
+                throw DHPromise.Problem.validationFailed
+            }
+            return value
+        })
+    }
+
+    // TODO: This timeout is not quite accurate, needs work with the queues
+    @discardableResult
+    public func timeout(_ timeInterval: TimeInterval) -> Promise<Value> {
+        return Promise<Value> { (fulfill, reject) in
+            DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval, execute: {
+                reject(DHPromise.Problem.timeout)
+            })
+
+            self.then(fulfill).onError(reject)
+        }
+    }
+}
+
 
 /// Namespace for Promise functions
 public enum DHPromise {
+
+    enum Problem: Error {
+        case emptyRace
+        case timeout
+        case validationFailed
+    }
 
     /// Resolve multiple promises of the same type into a single promise returning an array of the fulfilled values
     ///
@@ -296,7 +352,7 @@ public enum DHPromise {
     public static func race<Value>(_ promises: [Promise<Value>]) -> Promise<Value> {
         return Promise<Value> { (fulfill, reject) in
             if promises.isEmpty {
-                fatalError("Cannot call `race` on an empty array")
+                reject(DHPromise.Problem.emptyRace)
             }
             promises.forEach {
                 $0.then(fulfill).onError(reject)

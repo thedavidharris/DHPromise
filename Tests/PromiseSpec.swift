@@ -128,6 +128,26 @@ class PromiseSpec: QuickSpec {
                 expect(combined.value).toEventually(equal([2,4]))
             }
         }
+
+        describe("timeout") {
+            it("should reject promise if it takes longer than the timeout") {
+                waitUntil(timeout: 1, action: { (done) in
+                    slowerAyncSquareRoot(input: 4).timeout(0.49).onError({
+                        expect($0).to(matchError(DHPromise.Problem.timeout))
+                        done()
+                    })
+                })
+            }
+
+            it("should resolve promise if it resolves within timeout") {
+                waitUntil(timeout: 1, action: { (done) in
+                    slowerAyncSquareRoot(input: 4).timeout(0.6).then({
+                        expect($0) == 2
+                        done()
+                    })
+                })
+            }
+        }
     }
 }
 
