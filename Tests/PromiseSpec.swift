@@ -46,6 +46,13 @@ class PromiseSpec: QuickSpec {
             }
         }
 
+        it("should return an error if the promise initialization throws an error") {
+            let promise = Promise<Int>({ (fulfill, reject) in
+                throw Problem.testError
+            })
+            expect(promise.error).to(matchError(Problem.testError))
+        }
+
         describe("initializing an already fulfilled promise") {
             it("should resolve successfully when created with fulfilled value") {
                 let promise = Promise(value: 4)
@@ -88,6 +95,13 @@ class PromiseSpec: QuickSpec {
                 let chained = firstPromise.flatMap { _ in secondPromise }
                 expect(chained.error).toEventually(matchError(Problem.testError), timeout: 5)
             }
+
+            it("should return an error if the chain throws an error") {
+                let promise = asyncSquareRoot(input: 4).flatMap({ _ -> Promise<Int> in
+                    try throwPromiseIfNegativeInput(input: -4)
+                })
+                expect(promise.error).toEventually(matchError(Problem.testError))
+            }
         }
 
         describe("mapping a promise call") {
@@ -99,6 +113,13 @@ class PromiseSpec: QuickSpec {
             it("should propogate the error result through the map") {
                 let chained = asyncSquareRoot(input: -4).map({ String($0) })
                 expect(chained.error).toEventually(matchError(SquareRootError.negativeInput))
+            }
+
+            it("should return an error if the chain throws an error") {
+                let promise = asyncSquareRoot(input: 4).map({ _ -> Promise<Int> in
+                    try throwPromiseIfNegativeInput(input: -4)
+                })
+                expect(promise.error).toEventually(matchError(Problem.testError))
             }
         }
 
@@ -121,11 +142,124 @@ class PromiseSpec: QuickSpec {
         }
 
         describe("combining like promises") {
+            it("should return empty array if empty array is passed as input") {
+                expect(DHPromise.all([Promise<Int>]()).value).toEventually(equal([]))
+            }
+
             it("should return the results of both when both succeed") {
                 let firstPromise = asyncSquareRoot(input: 4)
                 let secondPromise = slowerAyncSquareRoot(input: 16)
                 let combined = DHPromise.all(firstPromise, secondPromise)
                 expect(combined.value).toEventually(equal([2,4]))
+            }
+
+            it("should return the first error") {
+                let firstPromise = asyncSquareRoot(input: -4)
+                let secondPromise = slowerAyncSquareRoot(input: 16)
+                let combined = DHPromise.all(firstPromise, secondPromise)
+                expect(combined.error).toEventually(matchError(SquareRootError.negativeInput))
+            }
+
+            it("should return the second error") {
+                let firstPromise = asyncSquareRoot(input: 4)
+                let secondPromise = slowerAyncSquareRoot(input: -16)
+                let combined = DHPromise.all(firstPromise, secondPromise)
+                expect(combined.error).toEventually(matchError(SquareRootError.negativeInput))
+            }
+
+
+        }
+
+        describe("combining unlike promises") {
+            it("should return the results of both when both succeed") {
+                let firstPromise = asyncSquareRoot(input: 4)
+                let secondPromise = asyncBasicPromise(from: .success("Hello"))
+                let combined = DHPromise.zip(firstPromise, secondPromise)
+                waitUntil(action: { (done) in
+                    combined.then({ (double, string) in
+                        expect(double) == 2
+                        expect(string) == "Hello"
+                        done()
+                    })
+                })
+            }
+
+            it("should return the first error") {
+                let firstPromise = asyncSquareRoot(input: -4)
+                let secondPromise = asyncBasicPromise(from: .success("Hello"))
+                let combined = DHPromise.zip(firstPromise, secondPromise)
+                waitUntil(action: { (done) in
+                    combined.onError({ (error) in
+                        expect(error).to(matchError(SquareRootError.negativeInput))
+                        done()
+                    })
+                })
+            }
+
+            it("should return the second error") {
+                let firstPromise = asyncSquareRoot(input: 4)
+                let secondPromise = asyncBasicPromise(from: Result<Int>.failure(Problem.testError))
+                let combined = DHPromise.zip(firstPromise, secondPromise)
+                waitUntil(action: { (done) in
+                    combined.onError({ (error) in
+                        expect(error).to(matchError(Problem.testError))
+                        done()
+                    })
+                })
+            }
+
+            it("should return the results when all three succeed") {
+                let firstPromise = asyncSquareRoot(input: 4)
+                let secondPromise = asyncBasicPromise(from: .success("Hello"))
+                let thirdPromise = asyncBasicPromise(from: .success([1,2,3]))
+                let combined = DHPromise.zip(firstPromise, secondPromise, thirdPromise)
+                waitUntil(action: { (done) in
+                    combined.then({ (double, string, array) in
+                        expect(double) == 2
+                        expect(string) == "Hello"
+                        expect(array) == [1,2,3]
+                        done()
+                    })
+                })
+            }
+
+            it("should return the first Error") {
+                let firstPromise = asyncSquareRoot(input: -4)
+                let secondPromise = asyncBasicPromise(from: .success("Hello"))
+                let thirdPromise = asyncBasicPromise(from: .success([1,2,3]))
+                let combined = DHPromise.zip(firstPromise, secondPromise, thirdPromise)
+                waitUntil(action: { (done) in
+                    combined.onError({ (error) in
+                        expect(error).to(matchError(SquareRootError.negativeInput))
+                        done()
+                    })
+                })
+            }
+
+            it("should return the second Error") {
+                let firstPromise = asyncSquareRoot(input: 4)
+                let secondPromise = asyncBasicPromise(from: Result<String>.failure(Problem.testError))
+                let thirdPromise = asyncBasicPromise(from: .success([1,2,3]))
+                let combined = DHPromise.zip(firstPromise, secondPromise, thirdPromise)
+                waitUntil(action: { (done) in
+                    combined.onError({ (error) in
+                        expect(error).to(matchError(Problem.testError))
+                        done()
+                    })
+                })
+            }
+
+            it("should return the third Error") {
+                let firstPromise = asyncSquareRoot(input: 4)
+                let secondPromise = asyncBasicPromise(from: .success("Hello"))
+                let thirdPromise = asyncBasicPromise(from: Result<[Int]>.failure(Problem.testError))
+                let combined = DHPromise.zip(firstPromise, secondPromise, thirdPromise)
+                waitUntil(timeout: 2, action: { (done) in
+                    combined.onError({ (error) in
+                        expect(error).to(matchError(Problem.testError))
+                        done()
+                    })
+                })
             }
         }
 
@@ -145,6 +279,82 @@ class PromiseSpec: QuickSpec {
                         expect($0) == 2
                         done()
                     })
+                })
+            }
+        }
+
+        describe("side effects") {
+            it("should let you inject side effects into the chain of a successful promise") {
+                var sideEffect: Int?
+                var result: Int?
+                asyncBasicPromise(from: .success(3)).do({ (side) in
+                    sideEffect = side * 2
+                }).then({ (final) in
+                    result = final
+                })
+
+                expect(sideEffect).toEventually(equal(6))
+                expect(result).toEventually(equal(3))
+            }
+
+            it("should let you inject side effects into the chain of a successful promise and reject the promise if it throws an error") {
+                var sideEffectErrorThrown: Error?
+                asyncBasicPromise(from: .success(3)).do({ _ in
+                    throw Problem.testError
+                }).onError({ (error) in
+                    sideEffectErrorThrown = error
+                })
+
+                expect(sideEffectErrorThrown).toEventually(matchError(Problem.testError))
+            }
+        }
+
+        describe("recover") {
+            it("should recover from an error when recover is called on a failing chain") {
+                waitUntil(action: { (done) in
+                    let promise = asyncSquareRoot(input: -4)
+                    promise.recover({ _ -> Promise<Double> in
+                        return Promise(value: 32)
+                    }).then({ (value) in
+                        expect(value) == 32
+                        done()
+                    })
+                })
+            }
+
+            it("should fail recovery if recover block throws an error") {
+                waitUntil(action: { (done) in
+                    let promise = asyncSquareRoot(input: -4)
+                    promise.recover({ _ -> Promise<Double> in
+                        throw Problem.testError
+                    }).onError({ (error) in
+                        expect(error).to(matchError(Problem.testError))
+                        done()
+                    })
+                })
+            }
+        }
+
+        describe("validation") {
+            it("should continue promise if validation passes") {
+                waitUntil(action: { (done) in
+                    asyncSquareRoot(input: 16)
+                        .validate({ $0 > 0 })
+                        .then({ (value) in
+                            expect(value) == 4
+                            done()
+                        })
+                })
+            }
+
+            it("should fail promise if validation fails") {
+                waitUntil(action: { (done) in
+                    asyncSquareRoot(input: 16)
+                        .validate({ $0 < 0 })
+                        .onError({ (error) in
+                            expect(error).to(matchError(DHPromise.Problem.validationFailed))
+                            done()
+                        })
                 })
             }
         }
@@ -188,6 +398,13 @@ func asyncBasicPromise<T>(from result: Result<T>) -> Promise<T> {
             }
         }
     })
+}
+
+func throwPromiseIfNegativeInput(input: Int) throws -> Promise<Int> {
+    if input < 0 {
+        throw Problem.testError
+    }
+    return Promise(value: input)
 }
 
 enum Problem: Error {

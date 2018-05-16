@@ -265,15 +265,6 @@ public extension Promise {
         }
     }
 
-    // Coming soon
-//    @discardableResult
-//    public func retry(_ attempts: Int, _ condition: @escaping ((Int, Error) throws -> Bool) = { _,_ in true }) -> Promise<Value> {
-//        guard attempts >= 1 else {
-//            // Must be a valid attempts number
-//            return Promise(error: DHPromise.Problem.invalidInput)
-//        }
-//    }
-
     @discardableResult
     public func validate(_ validate: @escaping (Value) throws -> Bool) -> Promise<Value> {
         return self.map({ (value)  in
@@ -350,7 +341,7 @@ public enum DHPromise {
                 if let firstValue = first.value, let secondValue = second.value {
                     fulfill((firstValue, secondValue))
                 }
-                } as (Any) -> ()
+            } as (Any) -> ()
             first.then(zipper).onError(reject)
             second.then(zipper).onError(reject)
         }
@@ -371,10 +362,10 @@ public enum DHPromise {
                 if let firstValue = firstZippedPair.value, let lastValue = third.value {
                     fulfill((firstValue.0, firstValue.1, lastValue))
                 }
-                } as (Any) -> ()
+            } as (Any) -> ()
 
             firstZippedPair.then(zipper).onError(reject)
-            second.then(zipper).onError(reject)
+            third.then(zipper).onError(reject)
         })
     }
 
@@ -391,6 +382,24 @@ public enum DHPromise {
                 $0.then(fulfill).onError(reject)
             }
         }
+    }
+
+    @discardableResult
+    public static func retry<Value>(attempts: Int, delay delayTime: TimeInterval, retryBody: @escaping () -> Promise<Value>) -> Promise<Value> {
+
+        var attemptsLeft = attempts
+
+        func attempt() -> Promise<Value> {
+            return retryBody().recover { error in
+                guard attemptsLeft > 0 else {
+                    throw error
+                }
+                attemptsLeft -= 1
+                return attempt().delay(delayTime)
+            }
+        }
+
+        return attempt()
     }
 }
 
