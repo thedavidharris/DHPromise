@@ -8,29 +8,21 @@
 
 import Foundation
 
-struct Callback<Value> {
-    let onFulfilled: ((Value) -> Void)?
-    let onRejected: ((Error) -> Void)?
-    let queue: DispatchQueue
-
-    func executeCallback(_ result: Result<Value>) {
-        switch result {
-        case .success(let value):
-            queue.async {
-                self.onFulfilled?(value)
-            }
-        case .failure(let error):
-            queue.async {
-                self.onRejected?(error)
-            }
-        }
-    }
+/// An enum representing the possible states of a promise
+///
+/// - resolved: The Future has completed successfully with an associated value
+/// - rejected: The Future has completed unsuccessfully with an associated error
+/// - pending: The Future is in progress, and has not completed with either a value or an error
+public enum FutureState {
+    case resolved
+    case rejected
+    case pending
 }
 
 public class Future<Value> {
 
     /// Current state of the Promise
-    public var state: PromiseState {
+    public var state: FutureState {
         switch _result {
         case .some(let resultValue):
             switch resultValue {
@@ -48,7 +40,7 @@ public class Future<Value> {
     private var _result: Result<Value>?
 
     /// Result value of the promise
-    public var result: Result<Value>? {
+    public internal(set) var result: Result<Value>? {
         get {
             return lockQueue.sync {
                 return self._result
@@ -63,23 +55,27 @@ public class Future<Value> {
     }
 
 
-    /// Convenience accessor for the associated value of the promise
+    /// Convenience accessor for the associated value of the future
     public var value: Value? {
         return result?.value
     }
 
-    /// Convenience accessor for the associated value of the promise
+    /// Convenience accessor for the associated error of the future
     public var error: Error? {
         return result?.error
     }
 
-    lazy var callbacks = [Callback<Value>]()
+    /// Callbacks attached to the future object
+    lazy private var callbacks = [Callback<Value>]()
 
     /// Locked queue to allow for thread-safety within the Future object
     private let lockQueue = DispatchQueue(label: "future_lock_queue", qos: .userInitiated)
 
 
-    init(result: Result<Value>?) {
+    /// Initializes the future with a Result object, completing it if the result is not nil
+    ///
+    /// - Parameter result: optional Result value to initialize the Future with
+    init(result: Result<Value>? = nil) {
         self.result = result
     }
 
@@ -91,13 +87,13 @@ public class Future<Value> {
         self.result = .failure(error)
     }
 
-    /// Execute a closure upon successful completion of the promise
+    /// Execute a closure upon successful completion of the future
     ///
     /// - Parameter callback: closure to execute upon completion of the promise
     /// - Returns: the existing promise object
     @discardableResult
     public func then(on queue: DispatchQueue = DispatchQueue.main, _ onFulfilled: @escaping (Value) -> Void) -> Future<Value> {
-        addCallbacks(on: queue, onFulfilled: onFulfilled)
+        addCallback(on: queue, onFulfilled: onFulfilled)
         return self
     }
 
@@ -106,65 +102,18 @@ public class Future<Value> {
     /// - Parameter callback: closure to execute upon completion of the promise
     /// - Returns: the existing promise object
     @discardableResult
-    public func onError(on queue: DispatchQueue = DispatchQueue.main, _ onRejected: @escaping (Error) -> Void) -> Future<Value> {
-        addCallbacks(on: queue, onRejected: onRejected)
+    public func `catch`(on queue: DispatchQueue = DispatchQueue.main, _ onRejected: @escaping (Error) -> Void) -> Future<Value> {
+        addCallback(on: queue, onRejected: onRejected)
         return self
     }
 
-    /// Execute a closure on completion of promise in both fulfilled and error states
+    /// Adds a success or error callback to be executed upon completion of the Future
     ///
-    /// - Parameter onFinally: closure to execute upon completion
-    /// - Returns: the existing promise object
-    @discardableResult
-    public func finally(_ onFinally: @escaping () -> ()) -> Future<Value> {
-        return then({ _ in
-            onFinally()
-        }).onError({ _ in
-            onFinally()
-        })
-    }
-
-    /// Chains promise objects together
-    ///
-    /// - Parameter onFulfilled: closure to execute upon successful completion
-    /// - Returns: existing promise object
-    @discardableResult
-    public func flatMap<NewValue>(on queue: DispatchQueue = DispatchQueue.main, _ onFulfilled: @escaping (Value) throws -> Future<NewValue>) -> Future<NewValue> {
-        return Promise<NewValue> { (fullfill, reject) in
-            self.addCallbacks(
-                on: queue,
-                onFulfilled: { (value) in
-                    do {
-                        try onFulfilled(value).then({ (newValue) in
-                            fullfill(newValue)
-                        }).onError({ (error) in
-                            reject(error)
-                        })
-                    } catch {
-                        reject(error)
-                    }
-            }, onRejected: { (error) in
-                reject(error)
-            })
-        }.futureResult
-    }
-
-    /// Maps the underlying type in the Promise object
-    ///
-    /// - Parameter onFulfilled: closure to execute upon successful completion
-    /// - Returns: the existing promise object
-    @discardableResult
-    public func map<NewValue>(_ onFulfilled: @escaping (Value) throws -> NewValue) -> Future<NewValue> {
-        return flatMap { (value) in
-            do {
-                return Future<NewValue>(value: try onFulfilled(value))
-            } catch {
-                return Future<NewValue>(error: error)
-            }
-        }
-    }
-
-    private func addCallbacks(on queue: DispatchQueue, onFulfilled: ((Value) -> ())? = nil, onRejected: ((Error) -> ())? = nil) {
+    /// - Parameters:
+    ///   - queue: DispachQueue for the call
+    ///   - onFulfilled: success callback to add
+    ///   - onRejected: error callback to add
+    func addCallback(on queue: DispatchQueue, onFulfilled: ((Value) -> ())? = nil, onRejected: ((Error) -> ())? = nil) {
         lockQueue.async {
             let callback = Callback(onFulfilled: onFulfilled,
                                     onRejected: onRejected,
@@ -189,65 +138,3 @@ public class Future<Value> {
         }
     }
 }
-
-public extension Future {
-
-    @discardableResult
-    public func `do`(on queue: DispatchQueue = DispatchQueue.main, _ action: @escaping (Value) throws -> Void) -> Future<Value> {
-        return self.flatMap({ (value) in
-            return Promise({ (fulfill, reject) in
-                do {
-                    try action(value)
-                    fulfill(value)
-                } catch {
-                    reject(error)
-                }
-            }).futureResult
-        })
-    }
-
-    @discardableResult
-    public func delay(_ timeInterval: TimeInterval) -> Future<Value> {
-        return Promise<Void> { (fulfill, reject) in
-            DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval, execute: {
-                    fulfill(())
-                })
-            }.futureResult.flatMap { _ in self }
-    }
-
-    @discardableResult
-    public func recover(_ recoverBlock: @escaping (Error) throws -> Future<Value>) -> Future<Value> {
-        return Promise { fulfill, reject in
-            self.then(fulfill).onError({ error in
-                do {
-                    try recoverBlock(error).then(fulfill).onError(reject)
-                } catch (let error) {
-                    reject(error)
-                }
-            })
-        }.futureResult
-    }
-
-    @discardableResult
-    public func validate(_ validate: @escaping (Value) throws -> Bool) -> Future<Value> {
-        return self.map({ (value)  in
-            guard try validate(value) else {
-                throw DHPromise.Problem.validationFailed
-            }
-            return value
-        })
-    }
-
-    // TODO: This timeout is not quite accurate, needs work with the queues
-    @discardableResult
-    public func timeout(_ timeInterval: TimeInterval) -> Future<Value> {
-        return Promise<Value> { (fulfill, reject) in
-            DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval, execute: {
-                reject(DHPromise.Problem.timeout)
-            })
-
-            self.then(fulfill).onError(reject)
-        }.futureResult
-    }
-}
-

@@ -38,7 +38,7 @@ class PromiseSpec: QuickSpec {
 
             it("should execute error closures for an unsuccessful promise") {
                 waitUntil(action: { (done) in
-                    asyncSquareRoot(input: -2).onError({ (error) in
+                    asyncSquareRoot(input: -2).catch({ (error) in
                         expect(error).to(matchError(SquareRootError.negativeInput))
                         done()
                     })
@@ -194,7 +194,7 @@ class PromiseSpec: QuickSpec {
                 let secondPromise = asyncBasicPromise(from: .success("Hello"))
                 let combined = DHPromise.zip(firstPromise, secondPromise)
                 waitUntil(action: { (done) in
-                    combined.onError({ (error) in
+                    combined.catch({ (error) in
                         expect(error).to(matchError(SquareRootError.negativeInput))
                         done()
                     })
@@ -206,7 +206,7 @@ class PromiseSpec: QuickSpec {
                 let secondPromise = asyncBasicPromise(from: Result<Int>.failure(Problem.testError))
                 let combined = DHPromise.zip(firstPromise, secondPromise)
                 waitUntil(action: { (done) in
-                    combined.onError({ (error) in
+                    combined.catch({ (error) in
                         expect(error).to(matchError(Problem.testError))
                         done()
                     })
@@ -234,7 +234,7 @@ class PromiseSpec: QuickSpec {
                 let thirdPromise = asyncBasicPromise(from: .success([1,2,3]))
                 let combined = DHPromise.zip(firstPromise, secondPromise, thirdPromise)
                 waitUntil(action: { (done) in
-                    combined.onError({ (error) in
+                    combined.catch({ (error) in
                         expect(error).to(matchError(SquareRootError.negativeInput))
                         done()
                     })
@@ -247,7 +247,7 @@ class PromiseSpec: QuickSpec {
                 let thirdPromise = asyncBasicPromise(from: .success([1,2,3]))
                 let combined = DHPromise.zip(firstPromise, secondPromise, thirdPromise)
                 waitUntil(action: { (done) in
-                    combined.onError({ (error) in
+                    combined.catch({ (error) in
                         expect(error).to(matchError(Problem.testError))
                         done()
                     })
@@ -260,7 +260,7 @@ class PromiseSpec: QuickSpec {
                 let thirdPromise = asyncBasicPromise(from: Result<[Int]>.failure(Problem.testError))
                 let combined = DHPromise.zip(firstPromise, secondPromise, thirdPromise)
                 waitUntil(timeout: 2, action: { (done) in
-                    combined.onError({ (error) in
+                    combined.catch({ (error) in
                         expect(error).to(matchError(Problem.testError))
                         done()
                     })
@@ -271,7 +271,7 @@ class PromiseSpec: QuickSpec {
         describe("timeout") {
             it("should reject promise if it takes longer than the timeout") {
                 waitUntil(timeout: 1, action: { (done) in
-                    slowerAyncSquareRoot(input: 4).timeout(0.49).onError({
+                    slowerAyncSquareRoot(input: 4).timeout(0.49).catch({
                         expect($0).to(matchError(DHPromise.Problem.timeout))
                         done()
                     })
@@ -306,7 +306,7 @@ class PromiseSpec: QuickSpec {
                 var sideEffectErrorThrown: Error?
                 asyncBasicPromise(from: .success(3)).do({ _ in
                     throw Problem.testError
-                }).onError({ (error) in
+                }).catch({ (error) in
                     sideEffectErrorThrown = error
                 })
 
@@ -332,7 +332,7 @@ class PromiseSpec: QuickSpec {
                     let promise = asyncSquareRoot(input: -4)
                     promise.recover({ _ -> Future<Double> in
                         throw Problem.testError
-                    }).onError({ (error) in
+                    }).catch({ (error) in
                         expect(error).to(matchError(Problem.testError))
                         done()
                     })
@@ -356,7 +356,7 @@ class PromiseSpec: QuickSpec {
                 waitUntil(action: { (done) in
                     asyncSquareRoot(input: 16)
                         .validate({ $0 < 0 })
-                        .onError({ (error) in
+                        .catch({ (error) in
                             expect(error).to(matchError(DHPromise.Problem.validationFailed))
                             done()
                         })
