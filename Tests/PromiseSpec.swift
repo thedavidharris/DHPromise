@@ -16,8 +16,8 @@ class PromiseSpec: QuickSpec {
 
         describe("When making a successful promise call") {
             it("should return a success") {
-                let promise = asyncSquareRoot(input: 4)
-                expect(promise.value).toEventually(equal(2))
+                let future = asyncSquareRoot(input: 4)
+                expect(future.value).toEventually(equal(2))
             }
 
             it("should execute resolve closures for a successful promise") {
@@ -47,28 +47,28 @@ class PromiseSpec: QuickSpec {
         }
 
         it("should return an error if the promise initialization throws an error") {
-            let promise = Promise<Int>({ (fulfill, reject) in
+            let future = Promise<Int>({ (fulfill, reject) in
                 throw Problem.testError
-            })
-            expect(promise.error).to(matchError(Problem.testError))
+            }).futureResult
+            expect(future.error).to(matchError(Problem.testError))
         }
 
         describe("initializing an already fulfilled promise") {
             it("should resolve successfully when created with fulfilled value") {
-                let promise = Promise(value: 4)
-                expect(promise.value) == 4
+                let future = Future(value: 4)
+                expect(future.value) == 4
             }
 
             it("should reject successfully when initialized with an error") {
-                let promise = Promise<Any>(error: Problem.testError)
-                expect(promise.error).to(matchError(Problem.testError))
+                let future = Future<Any>(error: Problem.testError)
+                expect(future.error).to(matchError(Problem.testError))
             }
         }
 
         describe("When making chaining two successful promise calls") {
             it("should return a success") {
-                let promise = asyncSquareRoot(input: 16).flatMap(asyncSquareRoot)
-                expect(promise.value).toEventually(equal(2), timeout: 4)
+                let future = asyncSquareRoot(input: 16).flatMap(asyncSquareRoot)
+                expect(future.value).toEventually(equal(2), timeout: 4)
             }
 
             it("should execute resolve closures for a successful promise") {
@@ -97,7 +97,7 @@ class PromiseSpec: QuickSpec {
             }
 
             it("should return an error if the chain throws an error") {
-                let promise = asyncSquareRoot(input: 4).flatMap({ _ -> Promise<Int> in
+                let promise = asyncSquareRoot(input: 4).flatMap({ _ -> Future<Int> in
                     try throwPromiseIfNegativeInput(input: -4)
                 })
                 expect(promise.error).toEventually(matchError(Problem.testError))
@@ -116,7 +116,7 @@ class PromiseSpec: QuickSpec {
             }
 
             it("should return an error if the chain throws an error") {
-                let promise = asyncSquareRoot(input: 4).map({ _ -> Promise<Int> in
+                let promise = asyncSquareRoot(input: 4).map({ _ -> Future<Int> in
                     try throwPromiseIfNegativeInput(input: -4)
                 })
                 expect(promise.error).toEventually(matchError(Problem.testError))
@@ -143,7 +143,12 @@ class PromiseSpec: QuickSpec {
 
         describe("combining like promises") {
             it("should return empty array if empty array is passed as input") {
-                expect(DHPromise.all([Promise<Int>]()).value).toEventually(equal([]))
+                waitUntil(action: { (done) in
+                    DHPromise.all([Future<Int>]()).then({ (value) in
+                        expect(value) == []
+                        done()
+                    })
+                })
             }
 
             it("should return the results of both when both succeed") {
@@ -313,8 +318,8 @@ class PromiseSpec: QuickSpec {
             it("should recover from an error when recover is called on a failing chain") {
                 waitUntil(action: { (done) in
                     let promise = asyncSquareRoot(input: -4)
-                    promise.recover({ _ -> Promise<Double> in
-                        return Promise(value: 32)
+                    promise.recover({ _ -> Future<Double> in
+                        return Future(value: 32)
                     }).then({ (value) in
                         expect(value) == 32
                         done()
@@ -325,7 +330,7 @@ class PromiseSpec: QuickSpec {
             it("should fail recovery if recover block throws an error") {
                 waitUntil(action: { (done) in
                     let promise = asyncSquareRoot(input: -4)
-                    promise.recover({ _ -> Promise<Double> in
+                    promise.recover({ _ -> Future<Double> in
                         throw Problem.testError
                     }).onError({ (error) in
                         expect(error).to(matchError(Problem.testError))
@@ -365,7 +370,7 @@ enum SquareRootError: Error {
     case negativeInput
 }
 
-func asyncSquareRoot(input: Double) -> Promise<Double> {
+func asyncSquareRoot(input: Double) -> Future<Double> {
     return Promise { (resolve, reject) in
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
             if input < 0 {
@@ -373,10 +378,10 @@ func asyncSquareRoot(input: Double) -> Promise<Double> {
             }
             return resolve(sqrt(input))
         }
-    }
+    }.futureResult
 }
 
-func slowerAyncSquareRoot(input: Double) -> Promise<Double> {
+func slowerAyncSquareRoot(input: Double) -> Future<Double> {
     return Promise { (resolve, reject) in
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
             if input < 0 {
@@ -384,10 +389,10 @@ func slowerAyncSquareRoot(input: Double) -> Promise<Double> {
             }
             return resolve(sqrt(input))
         }
-    }
+    }.futureResult
 }
 
-func asyncBasicPromise<T>(from result: Result<T>) -> Promise<T> {
+func asyncBasicPromise<T>(from result: Result<T>) -> Future<T> {
     return Promise({ (resolve, reject) in
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
             switch result {
@@ -397,14 +402,14 @@ func asyncBasicPromise<T>(from result: Result<T>) -> Promise<T> {
                 return reject(error)
             }
         }
-    })
+    }).futureResult
 }
 
-func throwPromiseIfNegativeInput(input: Int) throws -> Promise<Int> {
+func throwPromiseIfNegativeInput(input: Int) throws -> Future<Int> {
     if input < 0 {
         throw Problem.testError
     }
-    return Promise(value: input)
+    return Future(value: input)
 }
 
 enum Problem: Error {
