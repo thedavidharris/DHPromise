@@ -19,7 +19,7 @@ extension Future {
     public func validate(_ validate: @escaping (Value) throws -> Bool) -> Future<Value> {
         return self.map({ (value)  in
             guard try validate(value) else {
-                throw Problem.validationFailed
+                throw FutureError.validationFailed
             }
             return value
         })

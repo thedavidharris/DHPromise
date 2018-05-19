@@ -11,7 +11,11 @@ import Foundation
 /// A representation of a Future with completion callbacks
 public class Promise<Value> {
 
-    let futureResult: Future<Value>
+    public let futureResult: Future<Value>
+
+    public init() {
+        self.futureResult = Future<Value>()
+    }
 
     /// - Parameter work:
     /// Initializer for the promise
@@ -30,6 +34,20 @@ public class Promise<Value> {
         }
     }
 
+    /// Initialize an already resolved promise with a value
+    ///
+    /// - Parameter value: resolved value
+    public init(value: Value) {
+        self.futureResult = Future(value: value)
+    }
+
+    /// Initialize an already resolved promise with an error
+    ///
+    /// - Parameter error: resolved error
+    public init(error: Error) {
+        self.futureResult = Future(error: error)
+    }
+
     /// Complete the Future successfully with an associated value
     ///
     /// - Parameter value: value to complete Future with
@@ -42,12 +60,5 @@ public class Promise<Value> {
     /// - Parameter error: error to complete the Future with
     public func reject(error: Error) {
         futureResult.result = .failure(error)
-    }
-}
-
-// Can remove on inclusion into Swift STL
-extension Sequence {
-    public func containsOnly(where predicate: (Element) throws -> Bool) rethrows -> Bool {
-    return try !contains { try !predicate($0) }
     }
 }

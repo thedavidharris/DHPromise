@@ -17,7 +17,7 @@ public extension Future {
     public static func race(_ futures: [Future<Value>]) -> Future<Value> {
         return Promise<Value> { (fulfill, reject) in
             if futures.isEmpty {
-                reject(Problem.emptyRace)
+                reject(FutureError.emptyRace)
             }
             futures.forEach {
                 $0.then(fulfill).catch(reject)

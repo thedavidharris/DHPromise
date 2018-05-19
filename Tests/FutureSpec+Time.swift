@@ -1,5 +1,5 @@
 //
-//  ErrorType.swift
+//  FutureSpec+Time.swift
 //  DHPromise
 //
 //  Created by David Harris on 5/18/18.
@@ -8,9 +8,4 @@
 
 import Foundation
 
-public enum FutureError: Error {
-    case emptyRace
-    case invalidInput
-    case timeout
-    case validationFailed
-}
+// TODO: Add tests for delay and timeout

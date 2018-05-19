@@ -28,7 +28,7 @@ public extension Future {
                     reject(error)
                 })
             })
-            }.futureResult
+        }.futureResult
     }
 
     /// Variadic implemention of resolving all promises

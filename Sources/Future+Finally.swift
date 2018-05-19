@@ -14,7 +14,7 @@ public extension Future {
     /// - Parameter onFinally: closure to execute upon completion
     /// - Returns: the existing Future object
     @discardableResult
-    public func finally(_ onFinally: @escaping () -> ()) -> Future<Value> {
+    public func finally(_ onFinally: @escaping () -> Void) -> Future<Value> {
         return then({ _ in
             onFinally()
         }).catch({ _ in

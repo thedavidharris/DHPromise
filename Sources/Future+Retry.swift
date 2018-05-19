@@ -11,7 +11,7 @@ import Foundation
 public extension Future {
     
     @discardableResult
-    public static func retry<Value>(attempts: Int, delay delayTime: TimeInterval, retryBody: @escaping () -> Future<Value>) -> Future<Value> {
+    public func retry<Value>(attempts: Int, delay delayTime: TimeInterval = 0, retryBody: @escaping () -> Future<Value>) -> Future<Value> {
 
         var attemptsLeft = attempts
 

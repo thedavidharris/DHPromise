@@ -23,7 +23,7 @@ extension Future {
     public func timeout(_ timeInterval: TimeInterval) -> Future<Value> {
         return Promise<Value> { (fulfill, reject) in
             DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval, execute: {
-                reject(Problem.timeout)
+                reject(FutureError.timeout)
             })
 
             self.then(fulfill).catch(reject)
