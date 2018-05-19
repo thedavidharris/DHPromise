@@ -47,6 +47,6 @@
       location = "group:Package.resolved">
    </FileRef>
    <FileRef
-      location = "group:DHPromise.podspec">
+      location = "group:/Users/dharr419/workspace/libraries/Futura/Futura.podspec">
    </FileRef>
 </Workspace>
