@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3549BB3A1DA389E800C63030"
-               BuildableName = "DHPromise.framework"
-               BlueprintName = "DHPromise-macOS"
-               ReferencedContainer = "container:DHPromise.xcodeproj">
+               BlueprintIdentifier = "3549BB471DA389F300C63030"
+               BuildableName = "Futura.framework"
+               BlueprintName = "Futura-tvOS"
+               ReferencedContainer = "container:Futura.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,27 +26,26 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3549BB7E1DA38B0000C63030"
-               BuildableName = "DHPromiseTests-macOS.xctest"
-               BlueprintName = "DHPromiseTests-macOS"
-               ReferencedContainer = "container:DHPromise.xcodeproj">
+               BlueprintIdentifier = "3549BB6F1DA38AEF00C63030"
+               BuildableName = "FuturaTests-tvOS.xctest"
+               BlueprintName = "FuturaTests-tvOS"
+               ReferencedContainer = "container:Futura.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3549BB3A1DA389E800C63030"
-            BuildableName = "DHPromise.framework"
-            BlueprintName = "DHPromise-macOS"
-            ReferencedContainer = "container:DHPromise.xcodeproj">
+            BlueprintIdentifier = "3549BB471DA389F300C63030"
+            BuildableName = "Futura.framework"
+            BlueprintName = "Futura-tvOS"
+            ReferencedContainer = "container:Futura.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,7 +55,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -66,10 +64,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3549BB3A1DA389E800C63030"
-            BuildableName = "DHPromise.framework"
-            BlueprintName = "DHPromise-macOS"
-            ReferencedContainer = "container:DHPromise.xcodeproj">
+            BlueprintIdentifier = "3549BB471DA389F300C63030"
+            BuildableName = "Futura.framework"
+            BlueprintName = "Futura-tvOS"
+            ReferencedContainer = "container:Futura.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -84,10 +82,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3549BB3A1DA389E800C63030"
-            BuildableName = "DHPromise.framework"
-            BlueprintName = "DHPromise-macOS"
-            ReferencedContainer = "container:DHPromise.xcodeproj">
+            BlueprintIdentifier = "3549BB471DA389F300C63030"
+            BuildableName = "Futura.framework"
+            BlueprintName = "Futura-tvOS"
+            ReferencedContainer = "container:Futura.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

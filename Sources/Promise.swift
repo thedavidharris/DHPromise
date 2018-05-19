@@ -1,6 +1,6 @@
 //
 //  Promise.swift
-//  DHPromise
+//  Futura
 //
 //  Created by David Harris on 02/10/17.
 //  Copyright © 2017 thedavidharris. All rights reserved.

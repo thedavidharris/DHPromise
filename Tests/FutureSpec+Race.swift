@@ -1,6 +1,6 @@
 //
 //  FutureSpec+Race.swift
-//  DHPromise
+//  Futura
 //
 //  Created by David Harris on 5/18/18.
 //  Copyright © 2018 thedavidharris. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 import Quick
 import Nimble
-import DHPromise
+import Futura
 
 class FutureRaceSpec: QuickSpec {
     override func spec() {
@@ -113,7 +113,7 @@ class FutureRaceSpec: QuickSpec {
                 let second = Promise<String>()
 
                 waitUntil(action: { (done) in
-                    DHPromise.race(first.futureResult, second.futureResult).then({ (either) in
+                    race(first.futureResult, second.futureResult).then({ (either) in
                         switch either {
                         case .Right(let value):
                             expect(value) == "Two"
@@ -138,7 +138,7 @@ class FutureRaceSpec: QuickSpec {
                 let second = Promise<String>()
 
                 waitUntil(action: { (done) in
-                    DHPromise.race(first.futureResult, second.futureResult).then({ (either) in
+                    race(first.futureResult, second.futureResult).then({ (either) in
                         switch either {
                         case .Right:
                             fail()
@@ -163,7 +163,7 @@ class FutureRaceSpec: QuickSpec {
                 let second = Promise<String>()
 
                 waitUntil(action: { (done) in
-                    DHPromise.race(first.futureResult, second.futureResult).catch({ (error) in
+                    race(first.futureResult, second.futureResult).catch({ (error) in
                         expect(error).to(matchError(TestError()))
                     })
 
@@ -186,7 +186,7 @@ class FutureRaceSpec: QuickSpec {
                 let third = Promise<Bool>()
 
                 waitUntil(action: { (done) in
-                    DHPromise.race(first.futureResult, second.futureResult, third.futureResult).then({ (value) in
+                    race(first.futureResult, second.futureResult, third.futureResult).then({ (value) in
                         expect(value as? String) == "Two"
                     })
 

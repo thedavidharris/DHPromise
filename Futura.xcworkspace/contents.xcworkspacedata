@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:DHPromise.xcodeproj">
+      location = "group:Futura.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:DHPromise.playground">
+      location = "group:Futura.playground">
    </FileRef>
    <FileRef
       location = "group:scripts">

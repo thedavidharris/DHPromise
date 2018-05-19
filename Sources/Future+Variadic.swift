@@ -1,6 +1,6 @@
 //
 //  Future+Variadic.swift
-//  DHPromise
+//  Futura
 //
 //  Created by David Harris on 5/18/18.
 //  Copyright © 2018 thedavidharris. All rights reserved.
@@ -9,20 +9,20 @@
 import Foundation
 
 public extension Future {
-    /// Resolve multiple promises of the same type into a single promise returning an array of the fulfilled values
+    /// Resolve multiple futures of the same type into a single future returning an array of the fulfilled values
     ///
-    /// - Parameter promises: an array of promises of the same type
-    /// - Returns: a single promise combining the resolved values of `promises`
-    public static func all<Value>(_ promises: [Future<Value>]) -> Future<[Value]> {
+    /// - Parameter futures: an array of futures of the same type
+    /// - Returns: a single promise combining the resolved values of `futures`
+    public static func all<Value>(_ futures: [Future<Value>]) -> Future<[Value]> {
         return Promise<[Value]>{ (fullfill, reject) in
-            if promises.isEmpty {
+            if futures.isEmpty {
                 fullfill([])
             }
-            promises.forEach({ (promise) in
-                promise.then({ _ in
-                    if promises.containsOnly(where: { $0.state == .resolved }) {
+            futures.forEach({ (future) in
+                future.then({ _ in
+                    if futures.containsOnly(where: { $0.state == .resolved }) {
                         // Switch to compactMap in Swift 4.1
-                        fullfill(promises.flatMap({ $0.value }))
+                        fullfill(futures.flatMap({ $0.value }))
                     }
                 }).catch({ (error) in
                     reject(error)
@@ -31,21 +31,21 @@ public extension Future {
         }.futureResult
     }
 
-    /// Variadic implemention of resolving all promises
+    /// Variadic implemention of resolving all futures
     ///
-    /// - Parameter promises: an array of promises of the same type
-    /// - Returns: a single promise combining the resolved values of `promises`
-    public static func all<Value>(_ promises: Future<Value>...) -> Future<[Value]> {
-        return all(promises)
+    /// - Parameter futures: an array of futures of the same type
+    /// - Returns: a single future combining the resolved values of `futures`
+    public static func all<Value>(_ futures: Future<Value>...) -> Future<[Value]> {
+        return all(futures)
     }
 }
 
-/// Zips the results of two promises of different types into a tuple of two elements
+/// Zips the results of two futures of different types into a tuple of two elements
 ///
 /// - Parameters:
-///   - first: The first promise of type A
-///   - second: The second promise of type B
-/// - Returns: A promise of type Promise<(A, B)>, containing a tuple of the resolved values, or the first error returned
+///   - first: The first future of type A
+///   - second: The second future of type B
+/// - Returns: A future of type Future<(A, B)>, containing a tuple of the resolved values, or the first error returned
 public func zip<A, B>(_ first: Future<A>, _ second: Future<B>) -> Future<(A, B)> {
     return Promise<(A, B)> { (fulfill, reject) in
         let zipper = { _ in
@@ -58,13 +58,13 @@ public func zip<A, B>(_ first: Future<A>, _ second: Future<B>) -> Future<(A, B)>
         }.futureResult
 }
 
-/// Zips the results of three promises of different types into a tuple of three elements
+/// Zips the results of three futures of different types into a tuple of three elements
 ///
 /// - Parameters:
-///   - first: The first promise of type A
-///   - second: The second promise of type B
-///   - third: The third promise of type C
-/// - Returns: A promise of type Promise<(A, B, C)>, containing a tuple of the resolved values, or the first error returned
+///   - first: The first future of type A
+///   - second: The second future of type B
+///   - third: The third future of type C
+/// - Returns: A future of type Future<(A, B, C)>, containing a tuple of the resolved values, or the first error returned
 public func zip<A, B, C>(_ first: Future<A>, _ second: Future<B>, _ third: Future<C>) -> Future<(A, B, C)> {
     return Promise<(A, B, C)>({ (fulfill, reject) in
         let firstZippedPair = zip(first, second)

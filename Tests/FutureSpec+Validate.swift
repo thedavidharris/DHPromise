@@ -1,6 +1,6 @@
 //
 //  FutureSpec+Validate.swift
-//  DHPromise
+//  Futura
 //
 //  Created by David Harris on 5/18/18.
 //  Copyright © 2018 thedavidharris. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 import Quick
 import Nimble
-import DHPromise
+import Futura
 
 class FutureValidateSpec: QuickSpec {
     override func spec() {

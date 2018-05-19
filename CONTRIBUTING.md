@@ -22,7 +22,7 @@ This also allows maintainers to focus on improving the project for others.
 
 ## Reporting Security Issues
 
-The DHPromise maintainers takes security seriously.
+The Futura maintainers takes security seriously.
 If you discover a security issue, please bring it to our attention right away!
 
 Please **DO NOT** file a public issue,
@@ -84,7 +84,7 @@ The Code of Conduct governs how we behave in public or in private
 whenever the project will be judged by our actions.
 We expect it to be honored by everyone who contributes to this project.
 
-See [CODE_OF_CONDUCT.md](https://github.com/thedavidharris/DHPromise/blob/master/CODE_OF_CONDUCT.md) for details.
+See [CODE_OF_CONDUCT.md](https://github.com/thedavidharris/Futura/blob/master/CODE_OF_CONDUCT.md) for details.
 
 ---
 
