@@ -10,12 +10,16 @@
 [![Travis](https://img.shields.io/travis/thedavidharris/Futura/master.svg)](https://travis-ci.org/thedavidharris/Futura/branches)
 [![JetpackSwift](https://img.shields.io/badge/JetpackSwift-framework-red.svg)](http://github.com/JetpackSwift/FrameworkTemplate)
 
-A simple Promises framework in Swift
+A lightweight, functional framework for Futures in Swift
 
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
+
+## Why is it Named Futura
+
+Because it's the opposite of Pasta
 
 ## Requirements
 
