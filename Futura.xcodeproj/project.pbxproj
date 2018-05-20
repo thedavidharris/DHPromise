@@ -34,6 +34,17 @@
 		7082CA6220AFDE8E00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
 		7082CA6320AFDE8E00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
 		7082CA6420AFDE8F00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
+		70905F6920B1E82C006EBEB9 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70905F6820B1E82C006EBEB9 /* FutureError.swift */; };
+		70905F6A20B1E82C006EBEB9 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70905F6820B1E82C006EBEB9 /* FutureError.swift */; };
+		70905F6B20B1E82C006EBEB9 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70905F6820B1E82C006EBEB9 /* FutureError.swift */; };
+		70905F6C20B1E82C006EBEB9 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70905F6820B1E82C006EBEB9 /* FutureError.swift */; };
+		709809E920B1D96C00D8FC17 /* Collection+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809E820B1D96C00D8FC17 /* Collection+Future.swift */; };
+		709809EA20B1D96C00D8FC17 /* Collection+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809E820B1D96C00D8FC17 /* Collection+Future.swift */; };
+		709809EB20B1D96C00D8FC17 /* Collection+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809E820B1D96C00D8FC17 /* Collection+Future.swift */; };
+		709809EC20B1D96C00D8FC17 /* Collection+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809E820B1D96C00D8FC17 /* Collection+Future.swift */; };
+		709809EE20B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */; };
+		709809EF20B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */; };
+		709809F020B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */; };
 		70DBB00B20ADABCD009834EB /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB00A20ADABCD009834EB /* Future.swift */; };
 		70DBB00C20ADABCD009834EB /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB00A20ADABCD009834EB /* Future.swift */; };
 		70DBB00D20ADABCD009834EB /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB00A20ADABCD009834EB /* Future.swift */; };
@@ -74,10 +85,6 @@
 		70DBB03E20AF679F009834EB /* Future+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB03C20AF679F009834EB /* Future+Race.swift */; };
 		70DBB03F20AF679F009834EB /* Future+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB03C20AF679F009834EB /* Future+Race.swift */; };
 		70DBB04020AF679F009834EB /* Future+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB03C20AF679F009834EB /* Future+Race.swift */; };
-		70DBB04220AF6BC5009834EB /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04120AF6BC5009834EB /* ErrorType.swift */; };
-		70DBB04320AF6BC5009834EB /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04120AF6BC5009834EB /* ErrorType.swift */; };
-		70DBB04420AF6BC5009834EB /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04120AF6BC5009834EB /* ErrorType.swift */; };
-		70DBB04520AF6BC5009834EB /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04120AF6BC5009834EB /* ErrorType.swift */; };
 		70DBB04720AF6BF4009834EB /* Future+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04620AF6BF4009834EB /* Future+Retry.swift */; };
 		70DBB04820AF6BF4009834EB /* Future+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04620AF6BF4009834EB /* Future+Retry.swift */; };
 		70DBB04920AF6BF4009834EB /* Future+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04620AF6BF4009834EB /* Future+Retry.swift */; };
@@ -213,6 +220,9 @@
 		35B742341F82A61D00829B21 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		35B742351F82A61E00829B21 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		706E4C89208AEAEF00323955 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		70905F6820B1E82C006EBEB9 /* FutureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureError.swift; sourceTree = "<group>"; };
+		709809E820B1D96C00D8FC17 /* Collection+Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Future.swift"; sourceTree = "<group>"; };
+		709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Collection.swift"; sourceTree = "<group>"; };
 		70DBB00A20ADABCD009834EB /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		70DBB00F20AF5351009834EB /* Future+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Map.swift"; sourceTree = "<group>"; };
 		70DBB01420AF561C009834EB /* Future+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Time.swift"; sourceTree = "<group>"; };
@@ -223,7 +233,6 @@
 		70DBB03220AF669B009834EB /* Future+Do.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Do.swift"; sourceTree = "<group>"; };
 		70DBB03720AF66CF009834EB /* Future+Finally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Finally.swift"; sourceTree = "<group>"; };
 		70DBB03C20AF679F009834EB /* Future+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Race.swift"; sourceTree = "<group>"; };
-		70DBB04120AF6BC5009834EB /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
 		70DBB04620AF6BF4009834EB /* Future+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Retry.swift"; sourceTree = "<group>"; };
 		70DBB04B20AF6C66009834EB /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		70DBB05020AF7222009834EB /* FutureSpec+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Init.swift"; sourceTree = "<group>"; };
@@ -331,9 +340,10 @@
 			isa = PBXGroup;
 			children = (
 				70DBB01920AF5C1C009834EB /* Callback.swift */,
+				709809E820B1D96C00D8FC17 /* Collection+Future.swift */,
 				70DBB04B20AF6C66009834EB /* Either.swift */,
-				70DBB04120AF6BC5009834EB /* ErrorType.swift */,
 				70DBB00A20ADABCD009834EB /* Future.swift */,
+				70905F6820B1E82C006EBEB9 /* FutureError.swift */,
 				70DBB03220AF669B009834EB /* Future+Do.swift */,
 				70DBB03720AF66CF009834EB /* Future+Finally.swift */,
 				70DBB00F20AF5351009834EB /* Future+Map.swift */,
@@ -367,6 +377,7 @@
 				70DBB07920AFC717009834EB /* FutureSpec+Time.swift */,
 				70DBB07D20AFC72D009834EB /* FutureSpec+Validate.swift */,
 				70DBB08920AFD33E009834EB /* FutureSpec+Variadic.swift */,
+				709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -577,7 +588,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = thedavidharris;
 				TargetAttributes = {
 					3549BB201DA389CD00C63030 = {
@@ -698,7 +709,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DBB02920AF65A8009834EB /* Future+Validate.swift in Sources */,
-				70DBB04220AF6BC5009834EB /* ErrorType.swift in Sources */,
 				70DBB00B20ADABCD009834EB /* Future.swift in Sources */,
 				70DBB01520AF561C009834EB /* Future+Time.swift in Sources */,
 				70DBB04C20AF6C66009834EB /* Either.swift in Sources */,
@@ -707,8 +717,10 @@
 				70DBB03D20AF679F009834EB /* Future+Race.swift in Sources */,
 				70DBB04720AF6BF4009834EB /* Future+Retry.swift in Sources */,
 				70DBB01A20AF5C1C009834EB /* Callback.swift in Sources */,
+				70905F6920B1E82C006EBEB9 /* FutureError.swift in Sources */,
 				70DBB01020AF5351009834EB /* Future+Map.swift in Sources */,
 				70DBB05D20AFAC34009834EB /* Helpers.swift in Sources */,
+				709809E920B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB02420AF60D3009834EB /* Future+Variadic.swift in Sources */,
 				70DBB02E20AF65FA009834EB /* Future+Recover.swift in Sources */,
 				70DBB08520AFC896009834EB /* Promise+Void.swift in Sources */,
@@ -730,11 +742,12 @@
 				70DBB00E20ADABCD009834EB /* Future.swift in Sources */,
 				70DBB03120AF65FA009834EB /* Future+Recover.swift in Sources */,
 				70DBB01820AF561C009834EB /* Future+Time.swift in Sources */,
+				70905F6C20B1E82C006EBEB9 /* FutureError.swift in Sources */,
 				70DBB08820AFC89B009834EB /* Promise+Void.swift in Sources */,
 				359649061FB18CC000FC7ADC /* Promise.swift in Sources */,
 				70DBB01320AF5351009834EB /* Future+Map.swift in Sources */,
+				709809EC20B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB03B20AF66CF009834EB /* Future+Finally.swift in Sources */,
-				70DBB04520AF6BC5009834EB /* ErrorType.swift in Sources */,
 				7082CA6420AFDE8F00F0592C /* Result.swift in Sources */,
 				70DBB06020AFAC34009834EB /* Helpers.swift in Sources */,
 				70DBB02C20AF65A8009834EB /* Future+Validate.swift in Sources */,
@@ -754,11 +767,12 @@
 				70DBB00C20ADABCD009834EB /* Future.swift in Sources */,
 				70DBB02F20AF65FA009834EB /* Future+Recover.swift in Sources */,
 				70DBB01620AF561C009834EB /* Future+Time.swift in Sources */,
+				70905F6A20B1E82C006EBEB9 /* FutureError.swift in Sources */,
 				70DBB08620AFC898009834EB /* Promise+Void.swift in Sources */,
 				359649041FB18CC000FC7ADC /* Promise.swift in Sources */,
 				70DBB01120AF5351009834EB /* Future+Map.swift in Sources */,
+				709809EA20B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB03920AF66CF009834EB /* Future+Finally.swift in Sources */,
-				70DBB04320AF6BC5009834EB /* ErrorType.swift in Sources */,
 				7082CA6220AFDE8E00F0592C /* Result.swift in Sources */,
 				70DBB05E20AFAC34009834EB /* Helpers.swift in Sources */,
 				70DBB02A20AF65A8009834EB /* Future+Validate.swift in Sources */,
@@ -778,11 +792,12 @@
 				70DBB00D20ADABCD009834EB /* Future.swift in Sources */,
 				70DBB03020AF65FA009834EB /* Future+Recover.swift in Sources */,
 				70DBB01720AF561C009834EB /* Future+Time.swift in Sources */,
+				70905F6B20B1E82C006EBEB9 /* FutureError.swift in Sources */,
 				70DBB08720AFC89A009834EB /* Promise+Void.swift in Sources */,
 				359649051FB18CC000FC7ADC /* Promise.swift in Sources */,
 				70DBB01220AF5351009834EB /* Future+Map.swift in Sources */,
+				709809EB20B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB03A20AF66CF009834EB /* Future+Finally.swift in Sources */,
-				70DBB04420AF6BC5009834EB /* ErrorType.swift in Sources */,
 				7082CA6320AFDE8E00F0592C /* Result.swift in Sources */,
 				70DBB05F20AFAC34009834EB /* Helpers.swift in Sources */,
 				70DBB02B20AF65A8009834EB /* Future+Validate.swift in Sources */,
@@ -794,6 +809,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DBB07A20AFC717009834EB /* FutureSpec+Time.swift in Sources */,
+				709809EE20B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */,
 				70DBB07620AFC31F009834EB /* FutureSpec+Retry.swift in Sources */,
 				70DBB05520AF7667009834EB /* FutureSpec+Init.swift in Sources */,
 				70DBB07E20AFC72D009834EB /* FutureSpec+Validate.swift in Sources */,
@@ -812,6 +828,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DBB07C20AFC717009834EB /* FutureSpec+Time.swift in Sources */,
+				709809F020B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */,
 				70DBB07820AFC31F009834EB /* FutureSpec+Retry.swift in Sources */,
 				70DBB05720AF7669009834EB /* FutureSpec+Init.swift in Sources */,
 				70DBB08020AFC72D009834EB /* FutureSpec+Validate.swift in Sources */,
@@ -830,6 +847,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DBB07B20AFC717009834EB /* FutureSpec+Time.swift in Sources */,
+				709809EF20B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */,
 				70DBB07720AFC31F009834EB /* FutureSpec+Retry.swift in Sources */,
 				70DBB05620AF7668009834EB /* FutureSpec+Init.swift in Sources */,
 				70DBB07F20AFC72D009834EB /* FutureSpec+Validate.swift in Sources */,
@@ -877,6 +895,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -884,6 +903,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -938,6 +958,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -945,6 +966,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

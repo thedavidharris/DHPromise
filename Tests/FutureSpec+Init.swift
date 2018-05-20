@@ -18,7 +18,7 @@ class FutureInitSpec: QuickSpec {
                 let goodFuture = Promise<Int>({ (fulfill, reject) in
                     fulfill(4)
                 }).futureResult
-                expect(goodFuture.value) == 4
+                expect(goodFuture.value).toEventually(equal(4))
 
                 let badFuture = Promise<Int>({ (fulfill, reject) in
                     reject(TestError())

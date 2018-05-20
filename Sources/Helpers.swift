@@ -9,8 +9,15 @@
 import Foundation
 
 // Can remove on inclusion into Swift STL
-extension Sequence {
-    public func containsOnly(where predicate: (Element) throws -> Bool) rethrows -> Bool {
+internal extension Sequence {
+    func containsOnly(where predicate: (Element) throws -> Bool) rethrows -> Bool {
         return try !contains { try !predicate($0) }
     }
+
+    #if !swift(>=4.1)
+    func compactMap<ElementOfResult>(_ transform: (Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult] {
+        return try self.map(transform).filter { $0 != nil }.map { $0! }
+    }
+    #endif
 }
+

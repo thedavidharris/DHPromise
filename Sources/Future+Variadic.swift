@@ -21,8 +21,7 @@ public extension Future {
             futures.forEach({ (future) in
                 future.then({ _ in
                     if futures.containsOnly(where: { $0.state == .resolved }) {
-                        // Switch to compactMap in Swift 4.1
-                        fullfill(futures.flatMap({ $0.value }))
+                        fullfill(futures.compactMap({ $0.value }))
                     }
                 }).catch({ (error) in
                     reject(error)

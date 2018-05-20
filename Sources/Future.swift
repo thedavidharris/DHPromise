@@ -19,7 +19,21 @@ public enum FutureState {
     case pending
 }
 
-public class Future<Value> {
+/// Abstract Future type implemented by Future<T>
+public protocol FutureType {
+    /// This future's expected value type.
+    associatedtype Expectation
+
+    var state: FutureState { get }
+    var value: Expectation? { get }
+
+    @discardableResult
+    func then(on queue: DispatchQueue, _ onFulfilled: @escaping (Expectation) -> Void) -> Future<Expectation>
+}
+
+public class Future<Value>: FutureType {
+    public typealias Expectation = Value
+
 
     /// Current state of the Promise
     public var state: FutureState {
