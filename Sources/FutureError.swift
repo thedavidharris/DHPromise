@@ -8,6 +8,11 @@
 
 import Foundation
 
+/// Errors throw by the Futura library
+///
+/// - emptyRace: `race` called with no Futures
+/// - timeout: Future timed out
+/// - validationFailed: Future failed validation
 public enum FutureError: Error {
     case emptyRace
     case timeout

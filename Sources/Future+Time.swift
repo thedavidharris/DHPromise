@@ -9,6 +9,11 @@
 import Foundation
 
 extension Future {
+
+    /// Delays the Future for a defined amount of time
+    ///
+    /// - Parameter timeInterval: time to delay Future callbaks
+    /// - Returns: existing Future object
     @discardableResult
     public func delay(_ timeInterval: TimeInterval) -> Future<Value> {
         return Promise<Void> { (fulfill, reject) in
@@ -18,8 +23,12 @@ extension Future {
             }.futureResult.flatMap { _ in self }
     }
 
-    // TODO: This timeout is not quite accurate, needs work with the queues
     @discardableResult
+    // TODO: This timeout is not quite accurate, needs work with the queues
+    /// Adds a timeout that a Future must resolve by, otherwise fail the Future
+    ///
+    /// - Parameter timeInterval: amount of time before Timeout error is thrown
+    /// - Returns: existing Future object
     public func timeout(_ timeInterval: TimeInterval) -> Future<Value> {
         return Promise<Value> { (fulfill, reject) in
             DispatchQueue.global().asyncAfter(deadline: .now() + timeInterval, execute: {

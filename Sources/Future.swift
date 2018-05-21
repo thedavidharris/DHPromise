@@ -24,16 +24,26 @@ public protocol FutureType {
     /// This future's expected value type.
     associatedtype Expectation
 
+    /// State of the FutureType
     var state: FutureState { get }
+
+    /// Value of the resolved future, or nil if unresolved
     var value: Expectation? { get }
 
+
+    /// Abstract thenable behavior
+    ///
+    /// - Parameters:
+    ///   - queue: queue to execute callback on
+    ///   - onFulfilled: callback to execute on successful execution
+    /// - Returns: the FutureType object
     @discardableResult
     func then(on queue: DispatchQueue, _ onFulfilled: @escaping (Expectation) -> Void) -> Future<Expectation>
 }
 
 public class Future<Value>: FutureType {
-    public typealias Expectation = Value
 
+    public typealias Expectation = Value
 
     /// Current state of the Promise
     public var state: FutureState {
@@ -93,10 +103,16 @@ public class Future<Value>: FutureType {
         self.result = result
     }
 
+    /// Initializes a resolved Future with the provided value
+    ///
+    /// - Parameter value: value to resolve Future successfully with
     init(value: Value) {
         self.result = .success(value)
     }
 
+    /// Intializes an unsuccessful Future with the provided error
+    ///
+    /// - Parameter error: error to resolve Future unsuccessfully in
     init(error: Error) {
         self.result = .failure(error)
     }

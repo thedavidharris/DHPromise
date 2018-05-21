@@ -9,6 +9,13 @@
 import Foundation
 
 public extension Future {
+
+    /// Injects an action into the Future sequence without affecting the callback chain, unless the side effect throws an error
+    ///
+    /// - Parameters:
+    ///   - queue: queue to execute callback on
+    ///   - action: side effect to execute
+    /// - Returns: existing Future object
     @discardableResult
     public func `do`(on queue: DispatchQueue = DispatchQueue.main, _ action: @escaping (Value) throws -> Void) -> Future<Value> {
         return self.flatMap({ (value) in

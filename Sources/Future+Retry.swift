@@ -9,7 +9,14 @@
 import Foundation
 
 public extension Future {
-    
+
+    /// Catches a failed Future and executes a retry block
+    ///
+    /// - Parameters:
+    ///   - attempts: number of attempts to retry the failed Future
+    ///   - delayTime: amount of time to delay between retries
+    ///   - retryBody: closure to execute to retry
+    /// - Returns: existing Future object
     @discardableResult
     public func retry<Value>(attempts: Int, delay delayTime: TimeInterval = 0, retryBody: @escaping () -> Future<Value>) -> Future<Value> {
 

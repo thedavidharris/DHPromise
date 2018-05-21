@@ -9,11 +9,12 @@
 import Foundation
 
 public extension Future {
-    @discardableResult
+
     /// Recovers a failed Future object
     ///
     /// - Parameter recoverBlock: block to transform a failed Future's associated error to a new future
     /// - Returns: new Future object
+    @discardableResult
     public func recover(_ recoverBlock: @escaping (Error) throws -> Future<Value>) -> Future<Value> {
         return Promise { fulfill, reject in
             self.then(fulfill).catch({ error in

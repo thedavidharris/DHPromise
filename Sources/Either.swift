@@ -8,6 +8,10 @@
 
 import Foundation
 
+/// Functional enum to represent a binary option
+///
+/// - Left: one option
+/// - Right: the other option
 public enum Either<A, B>{
     case Left(A)
     case Right(B)
