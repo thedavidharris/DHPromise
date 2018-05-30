@@ -8,11 +8,32 @@
 
 import Foundation
 
+/// Conform to ResultType to use your own result type
+public protocol ResultType {
+    /// Type of result success
+    associatedtype Value
+
+    /// Error if result is unsuccessful
+    var error: Error? { get }
+
+    /// Value if result is successful
+    var value: Value? { get }
+
+    /// Used to convert to Futura.Result
+    var result: Result<Value> { get }
+}
+
+public extension ResultType {
+    public var result: Result<Value> {
+        return Result(value: value, error: error)
+    }
+}
+
 /// Enum to wrap a successful Value or an error of Error type
 ///
 /// - success: success type with associated value
 /// - failure: error type with associated Error value
-public enum Result<Value> {
+public enum Result<Value>: ResultType {
     case success(Value)
     case failure(Error)
 }
@@ -89,5 +110,27 @@ extension Result {
         case .success(let value): return Result<U> { try transform(value) }
         case .failure(let error): return .failure(error)
         }
+    }
+}
+
+extension Result {
+    public init(value: Value?, error: Error?) {
+        if let error = error {
+            self = .failure(error)
+        } else {
+            self = .success(value!)
+        }
+    }
+
+    public init(work: () throws -> Value) {
+        do {
+            self = try .success(work())
+        } catch {
+            self = .failure(error)
+        }
+    }
+
+    public var result: Result<Value> {
+        return self
     }
 }
