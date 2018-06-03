@@ -23,10 +23,10 @@ public extension Future {
         }.futureResult
     }
 
-    public static func wrap<T>(completion: @escaping (@escaping (Result<T>) -> Void) -> Void) -> Future<T> {
+    public static func wrap<T: ResultType>(completion: @escaping ((T) -> Void) -> Void) -> Future<T.Value> {
         return Promise { (fulfill, reject) in
-            completion { result in
-                switch result {
+            completion { resultType in
+                switch resultType.result {
                 case .success(let value):
                     return fulfill(value)
                 case .failure(let error):

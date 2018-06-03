@@ -30,6 +30,9 @@
 		35B742371F82A61E00829B21 /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35B742351F82A61E00829B21 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35B742381F82A62900829B21 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B742341F82A61D00829B21 /* Nimble.framework */; };
 		35B742391F82A62900829B21 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B742351F82A61E00829B21 /* Quick.framework */; };
+		7037751020C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */; };
+		7037751120C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */; };
+		7037751220C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */; };
 		706E4C8A208AEAEF00323955 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
 		7082CA6220AFDE8E00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
 		7082CA6320AFDE8E00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
@@ -223,6 +226,7 @@
 		35B7422E1F82A5E000829B21 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		35B742341F82A61D00829B21 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		35B742351F82A61E00829B21 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
+		7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Wrap.swift"; sourceTree = "<group>"; };
 		706E4C89208AEAEF00323955 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		70905F6820B1E82C006EBEB9 /* FutureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureError.swift; sourceTree = "<group>"; };
 		70967E0A20BF312100A72285 /* Future+Wrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Wrap.swift"; sourceTree = "<group>"; };
@@ -384,6 +388,7 @@
 				70DBB07D20AFC72D009834EB /* FutureSpec+Validate.swift */,
 				70DBB08920AFD33E009834EB /* FutureSpec+Variadic.swift */,
 				709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */,
+				7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -823,6 +828,7 @@
 				70DBB07620AFC31F009834EB /* FutureSpec+Retry.swift in Sources */,
 				70DBB05520AF7667009834EB /* FutureSpec+Init.swift in Sources */,
 				70DBB07E20AFC72D009834EB /* FutureSpec+Validate.swift in Sources */,
+				7037751020C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */,
 				70DBB06220AFADC1009834EB /* FutureSpec+Do.swift in Sources */,
 				70DBB06E20AFBC20009834EB /* FutureSpec+Race.swift in Sources */,
 				70DBB05920AF76AA009834EB /* TestHelpers.swift in Sources */,
@@ -842,6 +848,7 @@
 				70DBB07820AFC31F009834EB /* FutureSpec+Retry.swift in Sources */,
 				70DBB05720AF7669009834EB /* FutureSpec+Init.swift in Sources */,
 				70DBB08020AFC72D009834EB /* FutureSpec+Validate.swift in Sources */,
+				7037751220C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */,
 				70DBB06420AFADC1009834EB /* FutureSpec+Do.swift in Sources */,
 				70DBB07020AFBC20009834EB /* FutureSpec+Race.swift in Sources */,
 				70DBB05B20AF76AA009834EB /* TestHelpers.swift in Sources */,
@@ -861,6 +868,7 @@
 				70DBB07720AFC31F009834EB /* FutureSpec+Retry.swift in Sources */,
 				70DBB05620AF7668009834EB /* FutureSpec+Init.swift in Sources */,
 				70DBB07F20AFC72D009834EB /* FutureSpec+Validate.swift in Sources */,
+				7037751120C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */,
 				70DBB06320AFADC1009834EB /* FutureSpec+Do.swift in Sources */,
 				70DBB06F20AFBC20009834EB /* FutureSpec+Race.swift in Sources */,
 				70DBB05A20AF76AA009834EB /* TestHelpers.swift in Sources */,
