@@ -9,7 +9,9 @@
 import Foundation
 import Futura
 
-struct TestError: Error { }
+enum TestError: Error, Equatable {
+    case test
+}
 
 func asyncFuture<T>(from result: Result<T>, delay: TimeInterval = 0.1) -> Future<T> {
     return Promise({ (resolve, reject) in
@@ -26,7 +28,7 @@ func asyncFuture<T>(from result: Result<T>, delay: TimeInterval = 0.1) -> Future
 
 func throwingFuture<T>(successValue: T, shouldThrow: Bool) throws -> Future<T> {
     if shouldThrow {
-        throw TestError()
+        throw TestError.test
     }
     return Promise<T>(value: successValue).futureResult
 }

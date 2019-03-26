@@ -14,26 +14,41 @@
 		3549BB661DA38ADB00C63030 /* Futura.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3549BB211DA389CD00C63030 /* Futura.framework */; };
 		3549BB751DA38AEF00C63030 /* Futura.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3549BB481DA389F300C63030 /* Futura.framework */; };
 		3549BB841DA38B0000C63030 /* Futura.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3549BB3B1DA389E800C63030 /* Futura.framework */; };
-		354AD5861F8A659800B18FAE /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 354AD5841F8A659800B18FAE /* Quick.framework */; };
-		354AD5871F8A659800B18FAE /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 354AD5851F8A659800B18FAE /* Nimble.framework */; };
-		354AD5881F8A65B500B18FAE /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 354AD5851F8A659800B18FAE /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		354AD5891F8A65B500B18FAE /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 354AD5841F8A659800B18FAE /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		359649031FB18CC000FC7ADC /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359649021FB18CBF00FC7ADC /* Promise.swift */; };
 		359649041FB18CC000FC7ADC /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359649021FB18CBF00FC7ADC /* Promise.swift */; };
 		359649051FB18CC000FC7ADC /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359649021FB18CBF00FC7ADC /* Promise.swift */; };
 		359649061FB18CC000FC7ADC /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359649021FB18CBF00FC7ADC /* Promise.swift */; };
-		35B7422F1F82A5E000829B21 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35B7422D1F82A5DF00829B21 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		35B742301F82A5E000829B21 /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35B7422E1F82A5E000829B21 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		35B742311F82A5EC00829B21 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B7422D1F82A5DF00829B21 /* Nimble.framework */; };
-		35B742321F82A5EC00829B21 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B7422E1F82A5E000829B21 /* Quick.framework */; };
-		35B742361F82A61E00829B21 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35B742341F82A61D00829B21 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		35B742371F82A61E00829B21 /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35B742351F82A61E00829B21 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		35B742381F82A62900829B21 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B742341F82A61D00829B21 /* Nimble.framework */; };
-		35B742391F82A62900829B21 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B742351F82A61E00829B21 /* Quick.framework */; };
-		7037751020C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */; };
-		7037751120C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */; };
-		7037751220C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */; };
+		7000D2122249AE81001AABD4 /* FutureTests+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05020AF7222009834EB /* FutureTests+Init.swift */; };
+		7000D2132249AE82001AABD4 /* FutureTests+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05020AF7222009834EB /* FutureTests+Init.swift */; };
+		7000D2142249AE82001AABD4 /* FutureTests+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05020AF7222009834EB /* FutureTests+Init.swift */; };
+		7000D2152249B05E001AABD4 /* FutureTests+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06520AFB001009834EB /* FutureTests+Always.swift */; };
+		7000D2162249B05F001AABD4 /* FutureTests+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06520AFB001009834EB /* FutureTests+Always.swift */; };
+		7000D2182249B0CC001AABD4 /* FutureTests+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06520AFB001009834EB /* FutureTests+Always.swift */; };
 		706E4C8A208AEAEF00323955 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
+		7078E3602249B19500DBF053 /* FutureTests+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06120AFADC1009834EB /* FutureTests+Do.swift */; };
+		7078E3612249B19600DBF053 /* FutureTests+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06120AFADC1009834EB /* FutureTests+Do.swift */; };
+		7078E3622249B19700DBF053 /* FutureTests+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06120AFADC1009834EB /* FutureTests+Do.swift */; };
+		7078E3632249B2DC00DBF053 /* FutureTests+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06920AFB398009834EB /* FutureTests+Map.swift */; };
+		7078E3642249B2DD00DBF053 /* FutureTests+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06920AFB398009834EB /* FutureTests+Map.swift */; };
+		7078E3652249B2DE00DBF053 /* FutureTests+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06920AFB398009834EB /* FutureTests+Map.swift */; };
+		7078E3662249B59800DBF053 /* FutureTests+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06D20AFBC20009834EB /* FutureTests+Race.swift */; };
+		7078E3672249B59900DBF053 /* FutureTests+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06D20AFBC20009834EB /* FutureTests+Race.swift */; };
+		7078E3682249B59A00DBF053 /* FutureTests+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06D20AFBC20009834EB /* FutureTests+Race.swift */; };
+		7078E3692249BB5000DBF053 /* FutureTests+Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07120AFC183009834EB /* FutureTests+Recover.swift */; };
+		7078E36A2249BB5000DBF053 /* FutureTests+Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07120AFC183009834EB /* FutureTests+Recover.swift */; };
+		7078E36B2249BB5100DBF053 /* FutureTests+Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07120AFC183009834EB /* FutureTests+Recover.swift */; };
+		7078E36C2249BC4600DBF053 /* FutureTests+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07520AFC31F009834EB /* FutureTests+Retry.swift */; };
+		7078E36D2249BC4600DBF053 /* FutureTests+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07520AFC31F009834EB /* FutureTests+Retry.swift */; };
+		7078E36E2249BC4700DBF053 /* FutureTests+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07520AFC31F009834EB /* FutureTests+Retry.swift */; };
+		7078E36F2249BDF900DBF053 /* FutureTests+Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07D20AFC72D009834EB /* FutureTests+Validate.swift */; };
+		7078E3702249BDFA00DBF053 /* FutureTests+Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07D20AFC72D009834EB /* FutureTests+Validate.swift */; };
+		7078E3712249BDFA00DBF053 /* FutureTests+Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07D20AFC72D009834EB /* FutureTests+Validate.swift */; };
+		7078E3722249C07B00DBF053 /* FutureTests+Variadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08920AFD33E009834EB /* FutureTests+Variadic.swift */; };
+		7078E3732249C07C00DBF053 /* FutureTests+Variadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08920AFD33E009834EB /* FutureTests+Variadic.swift */; };
+		7078E3742249C07D00DBF053 /* FutureTests+Variadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08920AFD33E009834EB /* FutureTests+Variadic.swift */; };
+		7078E3752249C5BA00DBF053 /* FutureTests+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureTests+Wrap.swift */; };
+		7078E3762249C5BB00DBF053 /* FutureTests+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureTests+Wrap.swift */; };
+		7078E3772249C5BC00DBF053 /* FutureTests+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureTests+Wrap.swift */; };
 		7082CA6220AFDE8E00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
 		7082CA6320AFDE8E00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
 		7082CA6420AFDE8F00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
@@ -49,9 +64,9 @@
 		709809EA20B1D96C00D8FC17 /* Collection+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809E820B1D96C00D8FC17 /* Collection+Future.swift */; };
 		709809EB20B1D96C00D8FC17 /* Collection+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809E820B1D96C00D8FC17 /* Collection+Future.swift */; };
 		709809EC20B1D96C00D8FC17 /* Collection+Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809E820B1D96C00D8FC17 /* Collection+Future.swift */; };
-		709809EE20B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */; };
-		709809EF20B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */; };
-		709809F020B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */; };
+		709809EE20B1E01700D8FC17 /* FutureTests+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809ED20B1E01700D8FC17 /* FutureTests+Collection.swift */; };
+		709809EF20B1E01700D8FC17 /* FutureTests+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809ED20B1E01700D8FC17 /* FutureTests+Collection.swift */; };
+		709809F020B1E01700D8FC17 /* FutureTests+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709809ED20B1E01700D8FC17 /* FutureTests+Collection.swift */; };
 		70DBB00B20ADABCD009834EB /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB00A20ADABCD009834EB /* Future.swift */; };
 		70DBB00C20ADABCD009834EB /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB00A20ADABCD009834EB /* Future.swift */; };
 		70DBB00D20ADABCD009834EB /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB00A20ADABCD009834EB /* Future.swift */; };
@@ -100,9 +115,6 @@
 		70DBB04D20AF6C66009834EB /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04B20AF6C66009834EB /* Either.swift */; };
 		70DBB04E20AF6C66009834EB /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04B20AF6C66009834EB /* Either.swift */; };
 		70DBB04F20AF6C66009834EB /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB04B20AF6C66009834EB /* Either.swift */; };
-		70DBB05520AF7667009834EB /* FutureSpec+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05020AF7222009834EB /* FutureSpec+Init.swift */; };
-		70DBB05620AF7668009834EB /* FutureSpec+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05020AF7222009834EB /* FutureSpec+Init.swift */; };
-		70DBB05720AF7669009834EB /* FutureSpec+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05020AF7222009834EB /* FutureSpec+Init.swift */; };
 		70DBB05920AF76AA009834EB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05820AF76AA009834EB /* TestHelpers.swift */; };
 		70DBB05A20AF76AA009834EB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05820AF76AA009834EB /* TestHelpers.swift */; };
 		70DBB05B20AF76AA009834EB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05820AF76AA009834EB /* TestHelpers.swift */; };
@@ -110,37 +122,10 @@
 		70DBB05E20AFAC34009834EB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05C20AFAC34009834EB /* Helpers.swift */; };
 		70DBB05F20AFAC34009834EB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05C20AFAC34009834EB /* Helpers.swift */; };
 		70DBB06020AFAC34009834EB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05C20AFAC34009834EB /* Helpers.swift */; };
-		70DBB06220AFADC1009834EB /* FutureSpec+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06120AFADC1009834EB /* FutureSpec+Do.swift */; };
-		70DBB06320AFADC1009834EB /* FutureSpec+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06120AFADC1009834EB /* FutureSpec+Do.swift */; };
-		70DBB06420AFADC1009834EB /* FutureSpec+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06120AFADC1009834EB /* FutureSpec+Do.swift */; };
-		70DBB06620AFB001009834EB /* FutureSpec+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06520AFB001009834EB /* FutureSpec+Always.swift */; };
-		70DBB06720AFB001009834EB /* FutureSpec+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06520AFB001009834EB /* FutureSpec+Always.swift */; };
-		70DBB06820AFB001009834EB /* FutureSpec+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06520AFB001009834EB /* FutureSpec+Always.swift */; };
-		70DBB06A20AFB398009834EB /* FutureSpec+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06920AFB398009834EB /* FutureSpec+Map.swift */; };
-		70DBB06B20AFB398009834EB /* FutureSpec+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06920AFB398009834EB /* FutureSpec+Map.swift */; };
-		70DBB06C20AFB398009834EB /* FutureSpec+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06920AFB398009834EB /* FutureSpec+Map.swift */; };
-		70DBB06E20AFBC20009834EB /* FutureSpec+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06D20AFBC20009834EB /* FutureSpec+Race.swift */; };
-		70DBB06F20AFBC20009834EB /* FutureSpec+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06D20AFBC20009834EB /* FutureSpec+Race.swift */; };
-		70DBB07020AFBC20009834EB /* FutureSpec+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06D20AFBC20009834EB /* FutureSpec+Race.swift */; };
-		70DBB07220AFC183009834EB /* FutureSpec+Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07120AFC183009834EB /* FutureSpec+Recover.swift */; };
-		70DBB07320AFC183009834EB /* FutureSpec+Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07120AFC183009834EB /* FutureSpec+Recover.swift */; };
-		70DBB07420AFC183009834EB /* FutureSpec+Recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07120AFC183009834EB /* FutureSpec+Recover.swift */; };
-		70DBB07620AFC31F009834EB /* FutureSpec+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07520AFC31F009834EB /* FutureSpec+Retry.swift */; };
-		70DBB07720AFC31F009834EB /* FutureSpec+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07520AFC31F009834EB /* FutureSpec+Retry.swift */; };
-		70DBB07820AFC31F009834EB /* FutureSpec+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07520AFC31F009834EB /* FutureSpec+Retry.swift */; };
-		70DBB07A20AFC717009834EB /* FutureSpec+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07920AFC717009834EB /* FutureSpec+Time.swift */; };
-		70DBB07B20AFC717009834EB /* FutureSpec+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07920AFC717009834EB /* FutureSpec+Time.swift */; };
-		70DBB07C20AFC717009834EB /* FutureSpec+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07920AFC717009834EB /* FutureSpec+Time.swift */; };
-		70DBB07E20AFC72D009834EB /* FutureSpec+Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07D20AFC72D009834EB /* FutureSpec+Validate.swift */; };
-		70DBB07F20AFC72D009834EB /* FutureSpec+Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07D20AFC72D009834EB /* FutureSpec+Validate.swift */; };
-		70DBB08020AFC72D009834EB /* FutureSpec+Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB07D20AFC72D009834EB /* FutureSpec+Validate.swift */; };
 		70DBB08520AFC896009834EB /* Promise+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08120AFC881009834EB /* Promise+Void.swift */; };
 		70DBB08620AFC898009834EB /* Promise+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08120AFC881009834EB /* Promise+Void.swift */; };
 		70DBB08720AFC89A009834EB /* Promise+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08120AFC881009834EB /* Promise+Void.swift */; };
 		70DBB08820AFC89B009834EB /* Promise+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08120AFC881009834EB /* Promise+Void.swift */; };
-		70DBB08A20AFD33E009834EB /* FutureSpec+Variadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08920AFD33E009834EB /* FutureSpec+Variadic.swift */; };
-		70DBB08B20AFD33E009834EB /* FutureSpec+Variadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08920AFD33E009834EB /* FutureSpec+Variadic.swift */; };
-		70DBB08C20AFD33E009834EB /* FutureSpec+Variadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08920AFD33E009834EB /* FutureSpec+Variadic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,8 +159,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				35B7422F1F82A5E000829B21 /* Nimble.framework in Embed Frameworks */,
-				35B742301F82A5E000829B21 /* Quick.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,8 +169,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				35B742361F82A61E00829B21 /* Nimble.framework in Embed Frameworks */,
-				35B742371F82A61E00829B21 /* Quick.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,8 +179,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				354AD5881F8A65B500B18FAE /* Nimble.framework in Embed Frameworks */,
-				354AD5891F8A65B500B18FAE /* Quick.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,19 +198,13 @@
 		3549BB611DA38ADB00C63030 /* FuturaTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FuturaTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3549BB701DA38AEF00C63030 /* FuturaTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FuturaTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3549BB7F1DA38B0000C63030 /* FuturaTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FuturaTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		354AD5841F8A659800B18FAE /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/tvOS/Quick.framework; sourceTree = "<group>"; };
-		354AD5851F8A659800B18FAE /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/tvOS/Nimble.framework; sourceTree = "<group>"; };
 		359649021FB18CBF00FC7ADC /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
-		35B7422D1F82A5DF00829B21 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		35B7422E1F82A5E000829B21 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
-		35B742341F82A61D00829B21 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
-		35B742351F82A61E00829B21 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
-		7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Wrap.swift"; sourceTree = "<group>"; };
+		7037750F20C3991A0062E8A3 /* FutureTests+Wrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Wrap.swift"; sourceTree = "<group>"; };
 		706E4C89208AEAEF00323955 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		70905F6820B1E82C006EBEB9 /* FutureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureError.swift; sourceTree = "<group>"; };
 		70967E0A20BF312100A72285 /* Future+Wrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Wrap.swift"; sourceTree = "<group>"; };
 		709809E820B1D96C00D8FC17 /* Collection+Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Future.swift"; sourceTree = "<group>"; };
-		709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Collection.swift"; sourceTree = "<group>"; };
+		709809ED20B1E01700D8FC17 /* FutureTests+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Collection.swift"; sourceTree = "<group>"; };
 		70DBB00A20ADABCD009834EB /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		70DBB00F20AF5351009834EB /* Future+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Map.swift"; sourceTree = "<group>"; };
 		70DBB01420AF561C009834EB /* Future+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Time.swift"; sourceTree = "<group>"; };
@@ -244,19 +217,19 @@
 		70DBB03C20AF679F009834EB /* Future+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Race.swift"; sourceTree = "<group>"; };
 		70DBB04620AF6BF4009834EB /* Future+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Retry.swift"; sourceTree = "<group>"; };
 		70DBB04B20AF6C66009834EB /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
-		70DBB05020AF7222009834EB /* FutureSpec+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Init.swift"; sourceTree = "<group>"; };
+		70DBB05020AF7222009834EB /* FutureTests+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Init.swift"; sourceTree = "<group>"; };
 		70DBB05820AF76AA009834EB /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		70DBB05C20AFAC34009834EB /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		70DBB06120AFADC1009834EB /* FutureSpec+Do.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Do.swift"; sourceTree = "<group>"; };
-		70DBB06520AFB001009834EB /* FutureSpec+Always.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Always.swift"; sourceTree = "<group>"; };
-		70DBB06920AFB398009834EB /* FutureSpec+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Map.swift"; sourceTree = "<group>"; };
-		70DBB06D20AFBC20009834EB /* FutureSpec+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Race.swift"; sourceTree = "<group>"; };
-		70DBB07120AFC183009834EB /* FutureSpec+Recover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Recover.swift"; sourceTree = "<group>"; };
-		70DBB07520AFC31F009834EB /* FutureSpec+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Retry.swift"; sourceTree = "<group>"; };
-		70DBB07920AFC717009834EB /* FutureSpec+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Time.swift"; sourceTree = "<group>"; };
-		70DBB07D20AFC72D009834EB /* FutureSpec+Validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Validate.swift"; sourceTree = "<group>"; };
+		70DBB06120AFADC1009834EB /* FutureTests+Do.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Do.swift"; sourceTree = "<group>"; };
+		70DBB06520AFB001009834EB /* FutureTests+Always.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Always.swift"; sourceTree = "<group>"; };
+		70DBB06920AFB398009834EB /* FutureTests+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Map.swift"; sourceTree = "<group>"; };
+		70DBB06D20AFBC20009834EB /* FutureTests+Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Race.swift"; sourceTree = "<group>"; };
+		70DBB07120AFC183009834EB /* FutureTests+Recover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Recover.swift"; sourceTree = "<group>"; };
+		70DBB07520AFC31F009834EB /* FutureTests+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Retry.swift"; sourceTree = "<group>"; };
+		70DBB07920AFC717009834EB /* FutureTests+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Time.swift"; sourceTree = "<group>"; };
+		70DBB07D20AFC72D009834EB /* FutureTests+Validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Validate.swift"; sourceTree = "<group>"; };
 		70DBB08120AFC881009834EB /* Promise+Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Void.swift"; sourceTree = "<group>"; };
-		70DBB08920AFD33E009834EB /* FutureSpec+Variadic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureSpec+Variadic.swift"; sourceTree = "<group>"; };
+		70DBB08920AFD33E009834EB /* FutureTests+Variadic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Variadic.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,8 +265,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35B742311F82A5EC00829B21 /* Nimble.framework in Frameworks */,
-				35B742321F82A5EC00829B21 /* Quick.framework in Frameworks */,
 				3549BB661DA38ADB00C63030 /* Futura.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,8 +273,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				354AD5861F8A659800B18FAE /* Quick.framework in Frameworks */,
-				354AD5871F8A659800B18FAE /* Nimble.framework in Frameworks */,
 				3549BB751DA38AEF00C63030 /* Futura.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,8 +281,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35B742381F82A62900829B21 /* Nimble.framework in Frameworks */,
-				35B742391F82A62900829B21 /* Quick.framework in Frameworks */,
 				3549BB841DA38B0000C63030 /* Futura.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,19 +343,19 @@
 			isa = PBXGroup;
 			children = (
 				3549BB5B1DA38A8C00C63030 /* Supporting Files */,
-				70DBB05020AF7222009834EB /* FutureSpec+Init.swift */,
+				70DBB05020AF7222009834EB /* FutureTests+Init.swift */,
 				70DBB05820AF76AA009834EB /* TestHelpers.swift */,
-				70DBB06520AFB001009834EB /* FutureSpec+Always.swift */,
-				70DBB06120AFADC1009834EB /* FutureSpec+Do.swift */,
-				70DBB06920AFB398009834EB /* FutureSpec+Map.swift */,
-				70DBB06D20AFBC20009834EB /* FutureSpec+Race.swift */,
-				70DBB07120AFC183009834EB /* FutureSpec+Recover.swift */,
-				70DBB07520AFC31F009834EB /* FutureSpec+Retry.swift */,
-				70DBB07920AFC717009834EB /* FutureSpec+Time.swift */,
-				70DBB07D20AFC72D009834EB /* FutureSpec+Validate.swift */,
-				70DBB08920AFD33E009834EB /* FutureSpec+Variadic.swift */,
-				709809ED20B1E01700D8FC17 /* FutureSpec+Collection.swift */,
-				7037750F20C3991A0062E8A3 /* FutureSpec+Wrap.swift */,
+				70DBB06520AFB001009834EB /* FutureTests+Always.swift */,
+				70DBB06120AFADC1009834EB /* FutureTests+Do.swift */,
+				70DBB06920AFB398009834EB /* FutureTests+Map.swift */,
+				70DBB06D20AFBC20009834EB /* FutureTests+Race.swift */,
+				70DBB07120AFC183009834EB /* FutureTests+Recover.swift */,
+				70DBB07520AFC31F009834EB /* FutureTests+Retry.swift */,
+				70DBB07920AFC717009834EB /* FutureTests+Time.swift */,
+				70DBB07D20AFC72D009834EB /* FutureTests+Validate.swift */,
+				70DBB08920AFD33E009834EB /* FutureTests+Variadic.swift */,
+				709809ED20B1E01700D8FC17 /* FutureTests+Collection.swift */,
+				7037750F20C3991A0062E8A3 /* FutureTests+Wrap.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -415,12 +382,6 @@
 		357D954B1DA3F2B400AEC55F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				35B742341F82A61D00829B21 /* Nimble.framework */,
-				35B742351F82A61E00829B21 /* Quick.framework */,
-				35B7422D1F82A5DF00829B21 /* Nimble.framework */,
-				35B7422E1F82A5E000829B21 /* Quick.framework */,
-				354AD5851F8A659800B18FAE /* Nimble.framework */,
-				354AD5841F8A659800B18FAE /* Quick.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -823,19 +784,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70DBB07A20AFC717009834EB /* FutureSpec+Time.swift in Sources */,
-				709809EE20B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */,
-				70DBB07620AFC31F009834EB /* FutureSpec+Retry.swift in Sources */,
-				70DBB05520AF7667009834EB /* FutureSpec+Init.swift in Sources */,
-				70DBB07E20AFC72D009834EB /* FutureSpec+Validate.swift in Sources */,
-				7037751020C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */,
-				70DBB06220AFADC1009834EB /* FutureSpec+Do.swift in Sources */,
-				70DBB06E20AFBC20009834EB /* FutureSpec+Race.swift in Sources */,
+				7000D2182249B0CC001AABD4 /* FutureTests+Always.swift in Sources */,
+				7078E3662249B59800DBF053 /* FutureTests+Race.swift in Sources */,
+				7078E36B2249BB5100DBF053 /* FutureTests+Recover.swift in Sources */,
+				7078E3772249C5BC00DBF053 /* FutureTests+Wrap.swift in Sources */,
+				7078E3712249BDFA00DBF053 /* FutureTests+Validate.swift in Sources */,
+				709809EE20B1E01700D8FC17 /* FutureTests+Collection.swift in Sources */,
+				7078E36E2249BC4700DBF053 /* FutureTests+Retry.swift in Sources */,
 				70DBB05920AF76AA009834EB /* TestHelpers.swift in Sources */,
-				70DBB07220AFC183009834EB /* FutureSpec+Recover.swift in Sources */,
-				70DBB06620AFB001009834EB /* FutureSpec+Always.swift in Sources */,
-				70DBB06A20AFB398009834EB /* FutureSpec+Map.swift in Sources */,
-				70DBB08A20AFD33E009834EB /* FutureSpec+Variadic.swift in Sources */,
+				7078E3622249B19700DBF053 /* FutureTests+Do.swift in Sources */,
+				7078E3652249B2DE00DBF053 /* FutureTests+Map.swift in Sources */,
+				7000D2142249AE82001AABD4 /* FutureTests+Init.swift in Sources */,
+				7078E3742249C07D00DBF053 /* FutureTests+Variadic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,19 +803,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70DBB07C20AFC717009834EB /* FutureSpec+Time.swift in Sources */,
-				709809F020B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */,
-				70DBB07820AFC31F009834EB /* FutureSpec+Retry.swift in Sources */,
-				70DBB05720AF7669009834EB /* FutureSpec+Init.swift in Sources */,
-				70DBB08020AFC72D009834EB /* FutureSpec+Validate.swift in Sources */,
-				7037751220C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */,
-				70DBB06420AFADC1009834EB /* FutureSpec+Do.swift in Sources */,
-				70DBB07020AFBC20009834EB /* FutureSpec+Race.swift in Sources */,
+				7000D2152249B05E001AABD4 /* FutureTests+Always.swift in Sources */,
+				7078E3682249B59A00DBF053 /* FutureTests+Race.swift in Sources */,
+				7078E3692249BB5000DBF053 /* FutureTests+Recover.swift in Sources */,
+				7078E3752249C5BA00DBF053 /* FutureTests+Wrap.swift in Sources */,
+				7078E36F2249BDF900DBF053 /* FutureTests+Validate.swift in Sources */,
+				709809F020B1E01700D8FC17 /* FutureTests+Collection.swift in Sources */,
+				7078E36C2249BC4600DBF053 /* FutureTests+Retry.swift in Sources */,
 				70DBB05B20AF76AA009834EB /* TestHelpers.swift in Sources */,
-				70DBB07420AFC183009834EB /* FutureSpec+Recover.swift in Sources */,
-				70DBB06820AFB001009834EB /* FutureSpec+Always.swift in Sources */,
-				70DBB06C20AFB398009834EB /* FutureSpec+Map.swift in Sources */,
-				70DBB08C20AFD33E009834EB /* FutureSpec+Variadic.swift in Sources */,
+				7078E3602249B19500DBF053 /* FutureTests+Do.swift in Sources */,
+				7078E3632249B2DC00DBF053 /* FutureTests+Map.swift in Sources */,
+				7000D2122249AE81001AABD4 /* FutureTests+Init.swift in Sources */,
+				7078E3722249C07B00DBF053 /* FutureTests+Variadic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,19 +822,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70DBB07B20AFC717009834EB /* FutureSpec+Time.swift in Sources */,
-				709809EF20B1E01700D8FC17 /* FutureSpec+Collection.swift in Sources */,
-				70DBB07720AFC31F009834EB /* FutureSpec+Retry.swift in Sources */,
-				70DBB05620AF7668009834EB /* FutureSpec+Init.swift in Sources */,
-				70DBB07F20AFC72D009834EB /* FutureSpec+Validate.swift in Sources */,
-				7037751120C3991A0062E8A3 /* FutureSpec+Wrap.swift in Sources */,
-				70DBB06320AFADC1009834EB /* FutureSpec+Do.swift in Sources */,
-				70DBB06F20AFBC20009834EB /* FutureSpec+Race.swift in Sources */,
+				7000D2162249B05F001AABD4 /* FutureTests+Always.swift in Sources */,
+				7078E3672249B59900DBF053 /* FutureTests+Race.swift in Sources */,
+				7078E36A2249BB5000DBF053 /* FutureTests+Recover.swift in Sources */,
+				7078E3762249C5BB00DBF053 /* FutureTests+Wrap.swift in Sources */,
+				7078E3702249BDFA00DBF053 /* FutureTests+Validate.swift in Sources */,
+				709809EF20B1E01700D8FC17 /* FutureTests+Collection.swift in Sources */,
+				7078E36D2249BC4600DBF053 /* FutureTests+Retry.swift in Sources */,
 				70DBB05A20AF76AA009834EB /* TestHelpers.swift in Sources */,
-				70DBB07320AFC183009834EB /* FutureSpec+Recover.swift in Sources */,
-				70DBB06720AFB001009834EB /* FutureSpec+Always.swift in Sources */,
-				70DBB06B20AFB398009834EB /* FutureSpec+Map.swift in Sources */,
-				70DBB08B20AFD33E009834EB /* FutureSpec+Variadic.swift in Sources */,
+				7078E3612249B19600DBF053 /* FutureTests+Do.swift in Sources */,
+				7078E3642249B2DD00DBF053 /* FutureTests+Map.swift in Sources */,
+				7000D2132249AE82001AABD4 /* FutureTests+Init.swift in Sources */,
+				7078E3732249C07C00DBF053 /* FutureTests+Variadic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,7 +989,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.Futura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura;
 				PRODUCT_NAME = Futura;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1050,7 +1008,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.Futura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura;
 				PRODUCT_NAME = Futura;
 				SKIP_INSTALL = YES;
 			};
@@ -1069,7 +1027,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.Futura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura;
 				PRODUCT_NAME = Futura;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1092,7 +1050,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.Futura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura;
 				PRODUCT_NAME = Futura;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1115,7 +1073,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.Futura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura;
 				PRODUCT_NAME = Futura;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1137,7 +1095,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.Futura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura;
 				PRODUCT_NAME = Futura;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1156,7 +1114,7 @@
 				INFOPLIST_FILE = "Sources/Info-tvOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.Futura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura;
 				PRODUCT_NAME = Futura;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1178,7 +1136,7 @@
 				INFOPLIST_FILE = "Sources/Info-tvOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.Futura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura;
 				PRODUCT_NAME = Futura;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1192,10 +1150,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.FuturaTests;
@@ -1209,10 +1163,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.FuturaTests;
@@ -1225,10 +1175,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
 				INFOPLIST_FILE = "Tests/Info-tvOS.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.FuturaTests;
@@ -1244,10 +1190,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
 				INFOPLIST_FILE = "Tests/Info-tvOS.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.davidharris.Futura.FuturaTests;
@@ -1263,10 +1205,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -1283,10 +1221,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
