@@ -1,15 +1,13 @@
-//
-//  Futura.swift
-//  Futura
-//
-//  Created by David Harris on 23/10/15.
-//  Copyright © 2017 thedavidharris. All rights reserved.
-//
-
+// swift-tools-version:4.2
 import PackageDescription
 
-let package = Package(
-    name: "Futura",
-    dependencies: [],
-    exclude: ["Tests"]
+let pkg = Package(
+    name: "Futura.swift",
+    products: [
+        .library(name: "Futura", targets: ["Futura"]),
+    ],
+    targets: [
+        .target(name: "Futura", path: "Sources"),
+        .testTarget(name: "FuturaTests", dependencies: ["Futura"], path: "Tests")
+    ]
 )

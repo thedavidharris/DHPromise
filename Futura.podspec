@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
  s.authors = { "David Harris" => "davidaharris@outlook.com" }
  s.source = { :git => "https://github.com/thedavidharris/Futura.git", :tag => "v"+s.version.to_s }
  s.source_files = "Sources/*.swift"
- s.swift_version = '4.1'
+ s.swift_version = '4.2'
  s.platforms = { :ios => "10.0", :osx => "10.10", :tvos => "9.0", :watchos => "2.0" }
  s.requires_arc = true
 
