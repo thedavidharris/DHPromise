@@ -8,11 +8,13 @@
 
 import Foundation
 
-/// A representation of a Future with completion callbacks
+/// A representation of a Promise with completion callbacks
 public class Promise<Value> {
 
+    /// Underlying, immutable Future
     public let futureResult: Future<Value>
 
+    /// Empty initializer
     public init() {
         self.futureResult = Future<Value>()
     }

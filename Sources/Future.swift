@@ -41,8 +41,10 @@ public protocol FutureType {
     func then(on queue: DispatchQueue, _ onFulfilled: @escaping (Expectation) -> Void) -> Future<Expectation>
 }
 
+/// Generic class for a Future
 public class Future<Value>: FutureType {
 
+    /// Generic value type
     public typealias Expectation = Value
 
     /// Current state of the Promise

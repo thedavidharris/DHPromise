@@ -114,10 +114,6 @@
 		70DBB05920AF76AA009834EB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05820AF76AA009834EB /* TestHelpers.swift */; };
 		70DBB05A20AF76AA009834EB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05820AF76AA009834EB /* TestHelpers.swift */; };
 		70DBB05B20AF76AA009834EB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05820AF76AA009834EB /* TestHelpers.swift */; };
-		70DBB05D20AFAC34009834EB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05C20AFAC34009834EB /* Helpers.swift */; };
-		70DBB05E20AFAC34009834EB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05C20AFAC34009834EB /* Helpers.swift */; };
-		70DBB05F20AFAC34009834EB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05C20AFAC34009834EB /* Helpers.swift */; };
-		70DBB06020AFAC34009834EB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB05C20AFAC34009834EB /* Helpers.swift */; };
 		70DBB08520AFC896009834EB /* Promise+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08120AFC881009834EB /* Promise+Void.swift */; };
 		70DBB08620AFC898009834EB /* Promise+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08120AFC881009834EB /* Promise+Void.swift */; };
 		70DBB08720AFC89A009834EB /* Promise+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB08120AFC881009834EB /* Promise+Void.swift */; };
@@ -214,7 +210,6 @@
 		70DBB04B20AF6C66009834EB /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		70DBB05020AF7222009834EB /* FutureTests+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Init.swift"; sourceTree = "<group>"; };
 		70DBB05820AF76AA009834EB /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
-		70DBB05C20AFAC34009834EB /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		70DBB06120AFADC1009834EB /* FutureTests+Do.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Do.swift"; sourceTree = "<group>"; };
 		70DBB06520AFB001009834EB /* FutureTests+Always.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Always.swift"; sourceTree = "<group>"; };
 		70DBB06920AFB398009834EB /* FutureTests+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Map.swift"; sourceTree = "<group>"; };
@@ -325,7 +320,6 @@
 				70DBB02820AF65A8009834EB /* Future+Validate.swift */,
 				70DBB02320AF60D3009834EB /* Future+Variadic.swift */,
 				70967E0A20BF312100A72285 /* Future+Wrap.swift */,
-				70DBB05C20AFAC34009834EB /* Helpers.swift */,
 				359649021FB18CBF00FC7ADC /* Promise.swift */,
 				70DBB08120AFC881009834EB /* Promise+Void.swift */,
 				3549BB541DA38A4000C63030 /* Supporting Files */,
@@ -686,7 +680,6 @@
 				70DBB01A20AF5C1C009834EB /* Callback.swift in Sources */,
 				70905F6920B1E82C006EBEB9 /* FutureError.swift in Sources */,
 				70DBB01020AF5351009834EB /* Future+Map.swift in Sources */,
-				70DBB05D20AFAC34009834EB /* Helpers.swift in Sources */,
 				709809E920B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB02420AF60D3009834EB /* Future+Variadic.swift in Sources */,
 				70DBB02E20AF65FA009834EB /* Future+Recover.swift in Sources */,
@@ -716,7 +709,6 @@
 				70DBB01320AF5351009834EB /* Future+Map.swift in Sources */,
 				709809EC20B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB03B20AF66CF009834EB /* Future+Always.swift in Sources */,
-				70DBB06020AFAC34009834EB /* Helpers.swift in Sources */,
 				70DBB02C20AF65A8009834EB /* Future+Validate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -741,7 +733,6 @@
 				70DBB01120AF5351009834EB /* Future+Map.swift in Sources */,
 				709809EA20B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB03920AF66CF009834EB /* Future+Always.swift in Sources */,
-				70DBB05E20AFAC34009834EB /* Helpers.swift in Sources */,
 				70DBB02A20AF65A8009834EB /* Future+Validate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -766,7 +757,6 @@
 				70DBB01220AF5351009834EB /* Future+Map.swift in Sources */,
 				709809EB20B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB03A20AF66CF009834EB /* Future+Always.swift in Sources */,
-				70DBB05F20AFAC34009834EB /* Helpers.swift in Sources */,
 				70DBB02B20AF65A8009834EB /* Future+Validate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

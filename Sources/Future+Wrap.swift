@@ -9,6 +9,10 @@
 import Foundation
 
 extension Future {
+    /// Wraps a completion handler of (T?, Error?) -> Void into a Future
+    ///
+    /// - Parameter completion: callback of (T?, Error?) -> Void style
+    /// - Returns: Future<T> wrapping the callback
     public static func wrap<T>(completion: @escaping (@escaping (T?, Error?) -> Void) -> Void) -> Future<T> {
         return Promise { (fulfill, reject) in
             completion { value, error in
@@ -30,6 +34,10 @@ extension Future {
         }.futureResult
     }
 
+    /// Wraps a Result style completion handler
+    ///
+    /// - Parameter completion: Result<T, Error> -> Void style callback
+    /// - Returns: Future<T> wrapper of the callback
     public static func wrap<T>(completion: @escaping (@escaping (Result<T, Error>) -> Void) -> Void) -> Future<T> {
         return Promise { (fulfill, reject) in
             completion { result in

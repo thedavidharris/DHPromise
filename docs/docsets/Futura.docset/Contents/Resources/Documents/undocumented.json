@@ -1,0 +1,89 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/Either.swift",
+      "line": 16,
+      "symbol": "Either.Left(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/Either.swift",
+      "line": 17,
+      "symbol": "Either.Right(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/Future+Time.swift",
+      "line": 32,
+      "symbol": "Future.timeout(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/Future.swift",
+      "line": 17,
+      "symbol": "FutureState.resolved",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/Future.swift",
+      "line": 18,
+      "symbol": "FutureState.rejected",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/Future.swift",
+      "line": 19,
+      "symbol": "FutureState.pending",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/FutureError.swift",
+      "line": 18,
+      "symbol": "FutureError.emptyRace",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/FutureError.swift",
+      "line": 19,
+      "symbol": "FutureError.timeout",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/FutureError.swift",
+      "line": 20,
+      "symbol": "FutureError.validationFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/FutureError.swift",
+      "line": 21,
+      "symbol": "FutureError.invalidWrapParameters",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/Promise.swift",
+      "line": 14,
+      "symbol": "Promise.futureResult",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dharr419/workspace/libraries/Futura/Sources/Promise.swift",
+      "line": 16,
+      "symbol": "Promise.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/dharr419/workspace/libraries/Futura"
+}
