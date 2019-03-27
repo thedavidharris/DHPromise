@@ -64,7 +64,7 @@ public class Future<Value>: FutureType {
     private var _result: Result<Value, Error>?
 
     /// Result value of the promise
-    public internal(set) var result: Result<Value, Error>? {
+    var result: Result<Value, Error>? {
         get {
             return lockQueue.sync {
                 return self._result
@@ -142,7 +142,7 @@ public class Future<Value>: FutureType {
         return self
     }
 
-    /// Adds a success or error callback to be executed upon completion of the Future
+    /// Adds a success or error callback to be executed upon completion of the Future. Internal access to allow extensions from within the Futures module
     ///
     /// - Parameters:
     ///   - queue: DispachQueue for the call

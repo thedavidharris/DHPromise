@@ -13,6 +13,7 @@ import Foundation
 /// - emptyRace: `race` called with no Futures
 /// - timeout: Future timed out
 /// - validationFailed: Future failed validation
+/// - invalidWrapParameters: `Future.wrap` called with nil parameters
 public enum FutureError: Error {
     case emptyRace
     case timeout
