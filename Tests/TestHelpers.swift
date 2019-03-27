@@ -13,7 +13,7 @@ enum TestError: Error, Equatable {
     case test
 }
 
-func asyncFuture<T>(from result: Result<T>, delay: TimeInterval = 0.1) -> Future<T> {
+func asyncFuture<T>(from result: Result<T, Error>, delay: TimeInterval = 0.1) -> Future<T> {
     return Promise({ (resolve, reject) in
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
             switch result {

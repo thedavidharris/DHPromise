@@ -32,7 +32,7 @@ extension Future {
             }, onRejected: { (error) in
                 reject(error)
             })
-            }.futureResult
+        }.futureResult
     }
     
     /// Maps the underlying type in the Promise object

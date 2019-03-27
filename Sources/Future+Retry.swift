@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Future {
+extension Future {
 
     /// Catches a failed Future and executes a retry block
     ///

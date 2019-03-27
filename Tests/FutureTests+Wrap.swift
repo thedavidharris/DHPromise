@@ -26,7 +26,7 @@ class FutureWrapTests: XCTestCase {
     func testWrapCompletionHandlerError() {
         let expectation = XCTestExpectation()
         let future = Future<Int>.wrap(completion: {
-            regularCompletion(result: Result<Int>.failure(TestError.test), $0)
+            regularCompletion(result: Result<Int, Error>.failure(TestError.test), $0)
         })
         future.catch { (error) in
             XCTAssertEqual(error as? TestError, TestError.test)
@@ -50,7 +50,7 @@ class FutureWrapTests: XCTestCase {
     func testWrapResultCompletionHandlerError() {
         let expectation = XCTestExpectation()
         let future = Future<Int>.wrap(completion: {
-            resultCompletion(result: Result<Int>.failure(TestError.test), $0)
+            resultCompletion(result: Result<Int, Error>.failure(TestError.test), $0)
         })
         future.catch { (error) in
             XCTAssertEqual(error as? TestError, TestError.test)
@@ -60,7 +60,7 @@ class FutureWrapTests: XCTestCase {
     }
 }
 
-func regularCompletion(result: Result<Int>, _ completion: (Int?, Error?) -> Void) {
+func regularCompletion(result: Result<Int, Error>, _ completion: (Int?, Error?) -> Void) {
     switch result {
     case .success(let value):
         completion(value, nil)
@@ -69,6 +69,6 @@ func regularCompletion(result: Result<Int>, _ completion: (Int?, Error?) -> Void
     }
 }
 
-func resultCompletion(result: Result<Int>, _ completion: (Result<Int>) -> Void) {
+func resultCompletion(result: Result<Int, Error>, _ completion: (Result<Int, Error>) -> Void) {
     completion(result)
 }

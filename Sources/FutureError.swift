@@ -17,4 +17,5 @@ public enum FutureError: Error {
     case emptyRace
     case timeout
     case validationFailed
+    case invalidWrapParameters
 }

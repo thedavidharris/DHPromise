@@ -61,10 +61,10 @@ public class Future<Value>: FutureType {
     }
 
     /// Private underlying value of Promise.result for thread-safe access
-    private var _result: Result<Value>?
+    private var _result: Result<Value, Error>?
 
     /// Result value of the promise
-    public internal(set) var result: Result<Value>? {
+    public internal(set) var result: Result<Value, Error>? {
         get {
             return lockQueue.sync {
                 return self._result
@@ -81,12 +81,17 @@ public class Future<Value>: FutureType {
 
     /// Convenience accessor for the associated value of the future
     public var value: Value? {
-        return result?.value
+        return try? result?.get()
     }
 
     /// Convenience accessor for the associated error of the future
     public var error: Error? {
-        return result?.error
+        do {
+            _ = try result?.get()
+            return nil
+        } catch {
+            return error
+        }
     }
 
     /// Callbacks attached to the future object
@@ -99,7 +104,7 @@ public class Future<Value>: FutureType {
     /// Initializes the future with a Result object, completing it if the result is not nil
     ///
     /// - Parameter result: optional Result value to initialize the Future with
-    init(result: Result<Value>? = nil) {
+    init(result: Result<Value, Error>? = nil) {
         self.result = result
     }
 

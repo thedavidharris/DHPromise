@@ -8,11 +8,18 @@
 
 import Foundation
 
-public extension Future {
+extension Future {
     public static func wrap<T>(completion: @escaping (@escaping (T?, Error?) -> Void) -> Void) -> Future<T> {
         return Promise { (fulfill, reject) in
             completion { value, error in
-                let result = Result(value: value, error: error)
+                let result: Result<T, Error>
+                if let value = value {
+                    result = .success(value)
+                } else if let error = error {
+                    result = .failure(error)
+                } else {
+                    result = .failure(FutureError.invalidWrapParameters)
+                }
                 switch result {
                 case .success(let value):
                     return fulfill(value)
@@ -23,10 +30,10 @@ public extension Future {
         }.futureResult
     }
 
-    public static func wrap<T: ResultType>(completion: @escaping (@escaping (T) -> Void) -> Void) -> Future<T.Value> {
+    public static func wrap<T>(completion: @escaping (@escaping (Result<T, Error>) -> Void) -> Void) -> Future<T> {
         return Promise { (fulfill, reject) in
-            completion { resultType in
-                switch resultType.result {
+            completion { result in
+                switch result {
                 case .success(let value):
                     return fulfill(value)
                 case .failure(let error):

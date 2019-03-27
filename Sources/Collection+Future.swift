@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Collection where Element: FutureType {
+extension Collection where Element: FutureType {
 
     /// Extension on a collection of Futures analagous to `race`
     ///

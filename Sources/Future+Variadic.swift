@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Future {
+extension Future {
     /// Resolve multiple futures of the same type into a single future returning an array of the fulfilled values
     ///
     /// - Parameter futures: an array of futures of the same type

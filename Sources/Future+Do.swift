@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Future {
+extension Future {
 
     /// Injects an action into the Future sequence without affecting the callback chain, unless the side effect throws an error
     ///

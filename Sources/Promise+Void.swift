@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Promise where Value == Void {
+extension Promise where Value == Void {
     /// Convenience function to create a completed Promise<Void>
     ///
     /// - Returns: A completed promise

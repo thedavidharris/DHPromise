@@ -23,7 +23,7 @@ struct Callback<Value> {
     /// Run callback work for a given resolved value
     ///
     /// - Parameter result: resolved `Result` value to execute callback work with
-    func executeCallback(_ result: Result<Value>) {
+    func executeCallback(_ result: Result<Value, Error>) {
         switch result {
         case .success(let value):
             queue.async {

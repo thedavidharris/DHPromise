@@ -23,7 +23,7 @@ class FutureMapTests: XCTestCase {
     
     func testMapFirstError() {
         let expecation = XCTestExpectation()
-        asyncFuture(from: Result<Int>.failure(TestError.test)).flatMap({ (value) in
+        asyncFuture(from: Result<Int, Error>.failure(TestError.test)).flatMap({ (value) in
             asyncFuture(from: .success(String(value)))
         }).catch({ (error) in
             XCTAssertEqual(error as? TestError, TestError.test)
@@ -35,7 +35,7 @@ class FutureMapTests: XCTestCase {
     func testMapSecondError() {
         let expecation = XCTestExpectation()
         asyncFuture(from: .success(4)).flatMap({ (value) in
-            asyncFuture(from: Result<String>.failure(TestError.test))
+            asyncFuture(from: Result<String, Error>.failure(TestError.test))
         }).catch({ (error) in
             XCTAssertEqual(error as? TestError, TestError.test)
             expecation.fulfill()
@@ -67,7 +67,7 @@ class FutureMapTests: XCTestCase {
     
     func testMapFailedFuture() {
         let expecation = XCTestExpectation()
-        asyncFuture(from: Result<Int>.failure(TestError.test)).map({ (value) in
+        asyncFuture(from: Result<Int, Error>.failure(TestError.test)).map({ (value) in
             String(value)
         }).catch({ (error) in
             XCTAssertEqual(error as? TestError, TestError.test)

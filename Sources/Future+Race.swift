@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Future {
+extension Future {
 
     /// Returns the first Future resolved in an array of Futures
     ///

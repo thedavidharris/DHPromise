@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Future {
+extension Future {
 
     /// Recovers a failed Future object
     ///

@@ -24,7 +24,6 @@
 		7000D2152249B05E001AABD4 /* FutureTests+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06520AFB001009834EB /* FutureTests+Always.swift */; };
 		7000D2162249B05F001AABD4 /* FutureTests+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06520AFB001009834EB /* FutureTests+Always.swift */; };
 		7000D2182249B0CC001AABD4 /* FutureTests+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06520AFB001009834EB /* FutureTests+Always.swift */; };
-		706E4C8A208AEAEF00323955 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
 		7078E3602249B19500DBF053 /* FutureTests+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06120AFADC1009834EB /* FutureTests+Do.swift */; };
 		7078E3612249B19600DBF053 /* FutureTests+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06120AFADC1009834EB /* FutureTests+Do.swift */; };
 		7078E3622249B19700DBF053 /* FutureTests+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DBB06120AFADC1009834EB /* FutureTests+Do.swift */; };
@@ -49,9 +48,6 @@
 		7078E3752249C5BA00DBF053 /* FutureTests+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureTests+Wrap.swift */; };
 		7078E3762249C5BB00DBF053 /* FutureTests+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureTests+Wrap.swift */; };
 		7078E3772249C5BC00DBF053 /* FutureTests+Wrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037750F20C3991A0062E8A3 /* FutureTests+Wrap.swift */; };
-		7082CA6220AFDE8E00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
-		7082CA6320AFDE8E00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
-		7082CA6420AFDE8F00F0592C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E4C89208AEAEF00323955 /* Result.swift */; };
 		70905F6920B1E82C006EBEB9 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70905F6820B1E82C006EBEB9 /* FutureError.swift */; };
 		70905F6A20B1E82C006EBEB9 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70905F6820B1E82C006EBEB9 /* FutureError.swift */; };
 		70905F6B20B1E82C006EBEB9 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70905F6820B1E82C006EBEB9 /* FutureError.swift */; };
@@ -200,7 +196,6 @@
 		3549BB7F1DA38B0000C63030 /* FuturaTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FuturaTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		359649021FB18CBF00FC7ADC /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		7037750F20C3991A0062E8A3 /* FutureTests+Wrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FutureTests+Wrap.swift"; sourceTree = "<group>"; };
-		706E4C89208AEAEF00323955 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		70905F6820B1E82C006EBEB9 /* FutureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureError.swift; sourceTree = "<group>"; };
 		70967E0A20BF312100A72285 /* Future+Wrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Wrap.swift"; sourceTree = "<group>"; };
 		709809E820B1D96C00D8FC17 /* Collection+Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Future.swift"; sourceTree = "<group>"; };
@@ -333,7 +328,6 @@
 				70DBB05C20AFAC34009834EB /* Helpers.swift */,
 				359649021FB18CBF00FC7ADC /* Promise.swift */,
 				70DBB08120AFC881009834EB /* Promise+Void.swift */,
-				706E4C89208AEAEF00323955 /* Result.swift */,
 				3549BB541DA38A4000C63030 /* Supporting Files */,
 			);
 			path = Sources;
@@ -560,7 +554,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = thedavidharris;
 				TargetAttributes = {
 					3549BB201DA389CD00C63030 = {
@@ -602,10 +596,11 @@
 			};
 			buildConfigurationList = 3549BAFF1DA387DB00C63030 /* Build configuration list for PBXProject "Futura" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 3549BAFB1DA387DB00C63030;
 			productRefGroup = 3549BB061DA387DB00C63030 /* Products */;
@@ -684,7 +679,6 @@
 				70DBB00B20ADABCD009834EB /* Future.swift in Sources */,
 				70DBB01520AF561C009834EB /* Future+Time.swift in Sources */,
 				70DBB04C20AF6C66009834EB /* Either.swift in Sources */,
-				706E4C8A208AEAEF00323955 /* Result.swift in Sources */,
 				359649031FB18CC000FC7ADC /* Promise.swift in Sources */,
 				70DBB03D20AF679F009834EB /* Future+Race.swift in Sources */,
 				70967E0B20BF312100A72285 /* Future+Wrap.swift in Sources */,
@@ -722,7 +716,6 @@
 				70DBB01320AF5351009834EB /* Future+Map.swift in Sources */,
 				709809EC20B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB03B20AF66CF009834EB /* Future+Always.swift in Sources */,
-				7082CA6420AFDE8F00F0592C /* Result.swift in Sources */,
 				70DBB06020AFAC34009834EB /* Helpers.swift in Sources */,
 				70DBB02C20AF65A8009834EB /* Future+Validate.swift in Sources */,
 			);
@@ -748,7 +741,6 @@
 				70DBB01120AF5351009834EB /* Future+Map.swift in Sources */,
 				709809EA20B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB03920AF66CF009834EB /* Future+Always.swift in Sources */,
-				7082CA6220AFDE8E00F0592C /* Result.swift in Sources */,
 				70DBB05E20AFAC34009834EB /* Helpers.swift in Sources */,
 				70DBB02A20AF65A8009834EB /* Future+Validate.swift in Sources */,
 			);
@@ -774,7 +766,6 @@
 				70DBB01220AF5351009834EB /* Future+Map.swift in Sources */,
 				709809EB20B1D96C00D8FC17 /* Collection+Future.swift in Sources */,
 				70DBB03A20AF66CF009834EB /* Future+Always.swift in Sources */,
-				7082CA6320AFDE8E00F0592C /* Result.swift in Sources */,
 				70DBB05F20AFAC34009834EB /* Helpers.swift in Sources */,
 				70DBB02B20AF65A8009834EB /* Future+Validate.swift in Sources */,
 			);
@@ -862,6 +853,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -914,7 +906,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -925,6 +917,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -969,7 +962,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";

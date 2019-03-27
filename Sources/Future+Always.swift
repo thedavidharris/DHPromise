@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Future {
+extension Future {
     /// Execute a closure on completion of promise in both fulfilled and error states
     ///
     /// - Parameter onFinally: closure to execute upon completion
